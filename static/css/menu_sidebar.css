@@ -1,0 +1,78 @@
+.menu-sidebar {
+  position: fixed;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  right: 35px;
+  bottom: 30vh;
+  width: 50px;
+  height: 300px;
+  border-radius: 10px;
+  padding: 0;
+  z-index: 999;
+}
+
+.menu-sidebar a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: inherit;
+}
+
+.menu-sidebar svg {
+  display: inline-block;
+  padding: 4px 0;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-sidebar .menu-item::before {
+  position: absolute;
+  display: inline-block;
+  right: 100%;
+  width: 40px;
+  height: 80%;
+  transition: all 0.3s linear;
+  top: 5px;
+  opacity: 0;
+  font-family: "Comic Neue", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.menu-sidebar .menu-item:hover::before {
+  opacity: 1;
+  width: 80px;
+  border-bottom: var(--gray-800) solid 1px;
+  border-radius: 3px;
+}
+
+#blog::before {
+  content: "Blog";
+}
+
+#gallery::before {
+  content: "Gallery";
+}
+
+#recipe::before {
+  content: "Recipe";
+}
+
+#works::before {
+  content: "Works";
+}
+
+#notes::before {
+  content: "Notes";
+}
+
+#contact::before {
+  content: "Contact";
+}

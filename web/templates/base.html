@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %} {% load l10n %}
+    <meta charset="utf-8" />
+    <title>{% block title %}main page{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/logo-32x32.jpg' %}" sizes="32x32" />
+    {% block link %}{% endblock %}
+
+    <style>
+      :root {
+        --usr-theme-0: #ad1400;
+        --usr-theme-invert: #0366d6;
+        --usr-theme: #962736;
+        --usr-theme-2: #28a745;
+        --usr-theme-3: #c5a231;
+        --usr-theme-4: #6f42c1;
+
+        --usr-theme-green: #28a745;
+        --usr-theme-blue: #0366d6;
+        --usr-theme-yellow: #ffd33d;
+        --usr-theme-purple: #6f42c1;
+        --usr-theme-orange: #f66a0a;
+
+        --usr-theme-5: #4f5671;
+        --red-900: #9f1326;
+        --red-800: #b42318;
+        --red-700: #d92d20;
+        --red-600: #e94522;
+        --red-500: #f43f5e;
+        --red-400: #fb7185;
+        --red-300: #fda4af;
+        --red-200: #fecdd3;
+        --red-u1: #611813;
+        --brown-100: #4f5671;
+        --brown-800: #926254;
+        --blue-900: #1e3a8a;
+        --blue-800: #2563eb;
+        --blue-700: #3b82f6;
+        --blue-600: #60a5fa;
+        --blue-500: #93c5fd;
+        --blue-400: #bfdbfe;
+        --blue-300: #dbeafe;
+        --blue-200: #eff6ff;
+        --gray-950: #18171d;
+        --gray-900: #28272d;
+        --gray-800: #31383f;
+        --gray-700: #4c4b51;
+        --gray-600: #626168;
+        --gray-500: #737278;
+        --gray-400: #89888d;
+        --gray-300: #a4a3a8;
+        --gray-200: #bfbfc3;
+        --gray-100: #dcdcde;
+        --gray-50: #ececef;
+        --gray-10: #fbfafd;
+
+        --emoji-word-1: ": )";
+        --emoji-word-2: ": (";
+        --emoji-word-3: ": >";
+        --emoji-word-4: ": <";
+        --emoji-word-5: ": P";
+        --emoji-word-6: ": b";
+        --emoji-word-7: ": D";
+        --emoji-word-8: "x )";
+        --emoji-word-9: "x (";
+        --emoji-word-10: "x >";
+        --emoji-word-11: "x <";
+        --emoji-word-12: "x P";
+        --emoji-word-13: "x b";
+        --emoji-word-14: "x D";
+      }
+
+      @font-face {
+        font-family: "comic neue";
+        font-style: normal;
+        font-weight: light;
+        src:
+          local("comic neue"),
+          url("{% static 'fonts/Comic-Neue-Light.woff2' %}") format("woff2");
+        unicode-range:
+          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD, U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+@media only screen and (min-width: 2000px) {
+   body, html {
+	   font-size: 24px !important;
+   }
+}
+
+@media only screen and (max-width: 960px) {
+	.menu-sidebar{
+	display: none !important;
+}
+
+}
+
+      body,
+      html {
+        font-size: 20px;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif,
+          "Gill Sans",
+          "Gill Sans MT",
+          Calibri,
+          "Trebuchet MS",
+          sans-serif;
+        scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      #back-to-top {
+        position: fixed;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        right: 35px;
+        bottom: 5vh;
+        width: 36px;
+        height: 36px;
+        z-index: 999;
+        border-radius: 36px;
+        padding: 4px;
+        display: none;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      #back-to-top .top-svg {
+        width: 12px;
+        height: 12px;
+        padding: auto 0;
+      }
+
+      #back-to-top:hover {
+        background-color: var(--gray-10);
+      }
+    </style>
+
+    {% block style %}
+    <style>
+      /* 侧边菜单栏 */
+      .menu-sidebar {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        right: 30px;
+        /*bottom: 30vh;*/
+	bottom: 50%;
+	transform: translateY(50%);
+        width: 50px;
+        height: 300px;
+        /*border: #efefef solid 1px;
+        border-radius: 10px;*/
+        padding: 0;
+        z-index: 999;
+      }
+
+      .menu-sidebar svg {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        margin: 4px;
+        z-index: inherit;
+      }
+
+      .menu-item {
+        position: relative;
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        font-size: 0.88rem;
+        font-weight: 300;
+        color: var(--red-900);
+        text-align: right;
+        z-index: inherit;
+      }
+
+      .menu-sidebar a {
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        z-index: inherit;
+      }
+
+      .menu-sidebar svg {
+        display: inline-block;
+        padding: 4px 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .menu-sidebar .menu-item::before {
+        position: absolute;
+        display: inline-block;
+        right: 100%;
+        width: 40px;
+        height: 80%;
+        transition: all 0.3s linear;
+        top: 5px;
+        opacity: 0;
+        font-family: "Comic Neue", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--gray-800);
+      }
+
+      .menu-sidebar .menu-item:hover::before {
+        opacity: 1;
+        width: 80px;
+        border-bottom: var(--gray-800) solid 1px;
+        border-radius: 3px;
+      }
+
+      #blog::before {
+        content: "Blog";
+      }
+
+      #gallery::before {
+        content: "Gallery";
+      }
+
+      #recipe::before {
+        content: "Recipe";
+      }
+
+      #works::before {
+        content: "Works";
+      }
+
+      #notes::before {
+        content: "Notes";
+      }
+
+      #contact::before {
+        content: "Contact";
+      }
+
+      {% comment %} #theme-color-option-1 li,
+      #theme-color-option-2 li {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border: 1px var(--gray-200) solid;
+        z-index: 1000;
+        cursor: pointer !important;
+      } {% endcomment %}
+    </style>
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block top-navbar %}
+    <div
+      class="top-navbar"
+      style="
+        position: fixed;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        padding: 0 45px;
+        height: 60px;
+        width: 100vw;
+        z-index: 200;
+      "
+    >
+      <a
+        href="/"
+        class="logo-container"
+        style="
+          display: inline-flex;
+          width: 24px;
+          height: 24px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          id="logo-svg"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+        >
+          <g transform="rotate(-90 512 512)">
+            <path
+              d="M224 272c-27.2 0-48-20.8-48-48s20.8-48 48-48 48 20.8 48 48-20.8 48-48 48z m576 0c-27.2 0-48-20.8-48-48s20.8-48 48-48 48 20.8 48 48-20.8 48-48 48zM512 864c-180.8 0-344-108.8-412.8-275.2-6.4-16 1.6-35.2 17.6-41.6 16-6.4 35.2 1.6 41.6 17.6C217.6 707.2 356.8 800 512 800c155.2 0 294.4-92.8 355.2-236.8 6.4-16 25.6-24 41.6-17.6 16 6.4 24 25.6 17.6 41.6C856 755.2 692.8 864 512 864z"
+              fill="var(--red-900)"
+              stroke="var(--red-900)"
+              stroke-width="10"
+            ></path>
+          </g>
+        </svg>
+      </a>
+      <a
+        href="/search/"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+        "
+      >
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="var(--gray-800)"
+        >
+          <path
+            d="M11.2553 18.5261C15.2665 18.5261 18.5183 15.2743 18.5183 11.2631C18.5183 7.25179 15.2665 4 11.2553 4C7.24397 4 3.99219 7.25179 3.99219 11.2631C3.99219 15.2743 7.24397 18.5261 11.2553 18.5261Z"
+            stroke-width="1.2"
+            stroke-miterlimit="10"
+          ></path>
+          <path
+            d="M16.3613 16.3633L20.6894 20.6914"
+            stroke-width="1.2"
+            stroke-miterlimit="10"
+          ></path>
+        </svg>
+      </a>
+    </div>
+    {% endblock %} {% block main %}{% endblock %} {% block menu-sidebar %}
+    <div class="menu-sidebar">
+      <a href="/blog/" id="blog" class="menu-item">
+        <svg
+          class="blog-icon"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          stroke="none"
+        >
+          <path
+            d="M881.664 699.904c-11.264 0-20.48 9.216-20.48 20.48V875.52c0 56.832-46.592 103.424-103.424 103.424H174.08c-56.832 0-103.424-46.592-103.424-103.424V150.016C70.656 92.672 117.248 46.08 174.08 46.08h583.68c56.832 0 103.424 46.592 103.424 103.424V414.72c0 11.264 9.216 20.48 20.48 20.48s20.48-9.216 20.48-20.48V150.016C902.144 70.144 837.12 5.12 757.76 5.12H174.08C94.208 5.12 29.696 70.144 29.696 150.016V875.52c0 79.872 65.024 144.384 144.384 144.384h583.68c79.872 0 144.384-65.024 144.384-144.384v-155.136c0-11.264-9.216-20.48-20.48-20.48z"
+            fill="inherit"
+          ></path>
+          <path
+            d="M672.768 281.088H257.536c-11.264 0-20.48 9.216-20.48 20.48s9.216 20.48 20.48 20.48h415.232c11.264 0 20.48-9.216 20.48-20.48s-9.216-20.48-20.48-20.48zM672.768 485.376H257.536c-11.264 0-20.48 9.216-20.48 20.48s9.216 20.48 20.48 20.48h415.232c11.264 0 20.48-9.216 20.48-20.48s-9.216-20.48-20.48-20.48zM993.792 398.336c-8.704-7.168-21.504-5.632-28.672 3.072l-394.24 486.4c-7.168 8.704-5.632 21.504 3.072 28.672 3.584 3.072 8.192 4.608 12.8 4.608 6.144 0 11.776-2.56 15.872-7.68l394.24-486.4c6.656-8.704 5.632-21.504-3.072-28.672z"
+            fill="inherit"
+          ></path>
+        </svg>
+      </a>
+
+      <a href="/gallery/" id="gallery" class="menu-item">
+        <svg
+          id="gallery-icon"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="36"
+          height="34"
+          stroke="none"
+        >
+          <path
+            d="M160 161.28c-35.072 0-64 26.432-64 58.496v584.448c0 32.064 28.928 58.496 64 58.496h704c35.072 0 64-26.432 64-58.496V219.776c0-32.064-28.928-58.496-64-58.496h-704z m0 39.04h704c12.16 0 21.312 8.32 21.312 19.456v420.416l-134.336-122.688a22.4 22.4 0 0 0-15.424-5.632 22.272 22.272 0 0 0-15.232 6.208l-134.336 131.2-208.32-190.272a22.592 22.592 0 0 0-17.28-5.44 22.4 22.4 0 0 0-12.032 4.864l-209.664 174.72v-413.44c0-11.072 9.152-19.456 21.312-19.456zM576 267.904c-58.688 0-106.688 48-106.688 106.688 0 58.624 48 106.624 106.688 106.624s106.688-48 106.688-106.624c0-58.688-48-106.688-106.688-106.688z m0 42.688c35.584 0 64 28.352 64 64 0 35.584-28.416 64-64 64s-64-28.416-64-64c0-35.648 28.416-64 64-64zM361.984 499.84l209.664 191.488a22.4 22.4 0 0 0 15.488 5.632 22.272 22.272 0 0 0 15.168-6.272l134.4-131.2 148.608 135.808v108.928c0 11.136-9.152 19.52-21.312 19.52h-704c-12.16 0-21.312-8.32-21.312-19.52v-118.08l223.36-186.304z"
+            fill="inherit"
+          ></path>
+        </svg>
+      </a>
+
+      <a href="/recipe/" id="recipe" class="menu-item">
+        <svg
+          id="recipe-icon"
+          viewBox="45 0 945 900"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="32"
+          height="32"
+          stroke="none"
+          fill="inherit"
+        >
+          <path
+            d="M302.448 143.2c-74.912 0-142.336 77.2-142.336 181.616 0 104.432 67.424 181.632 142.336 181.632s142.336-77.2 142.336-181.632c0-104.416-67.424-181.616-142.336-181.616zM121.712 324.816c0-117.392 77.232-220.016 180.736-220.016 103.52 0 180.736 102.624 180.736 220.016 0 117.408-77.232 220.032-180.736 220.032-103.52 0-180.736-102.624-180.736-220.032z"
+          ></path>
+          <path
+            d="M366.176 504.336a19.2 19.2 0 0 1 20.832 17.408L411.12 790.64c6.928 62.16-41.728 116.56-104.32 116.56-62.56 0-111.216-54.4-104.304-116.56l24.112-268.896a19.2 19.2 0 0 1 38.24 3.44l-24.112 269.104-0.048 0.448a66.56 66.56 0 1 0 132.256 0l-0.032-0.24-0.016-0.208-24.128-269.12a19.2 19.2 0 0 1 17.408-20.832z m421.92 0a19.2 19.2 0 0 1 20.848 17.408L833.04 790.64c6.928 62.16-41.728 116.56-104.304 116.56s-111.232-54.4-104.32-116.56l24.112-268.896a19.2 19.2 0 0 1 38.24 3.44l-24.112 269.104-0.048 0.448a66.56 66.56 0 1 0 132.256 0l-0.032-0.24v-0.208l-24.144-269.12a19.2 19.2 0 0 1 17.408-20.832z"
+          ></path>
+          <path
+            d="M568.752 135.36a19.2 19.2 0 0 1 19.2 19.2v213.92a137.968 137.968 0 1 0 275.936 0V154.56a19.2 19.2 0 1 1 38.4 0v213.92c0 97.408-78.96 176.368-176.368 176.368s-176.368-78.96-176.368-176.368V154.56a19.2 19.2 0 0 1 19.2-19.2z"
+          ></path>
+          <path
+            d="M673.536 109.168a19.2 19.2 0 0 1 19.2 19.2V385.92a19.2 19.2 0 0 1-38.4 0V128.368a19.2 19.2 0 0 1 19.2-19.2z m102.816 0a19.2 19.2 0 0 1 19.2 19.2V385.92a19.2 19.2 0 1 1-38.4 0V128.368a19.2 19.2 0 0 1 19.2-19.2z"
+          ></path>
+        </svg>
+      </a>
+      <a href="/works/" id="works" class="menu-item">
+        <svg
+          id="works-icon"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          stroke="none"
+        >
+          <path
+            d="M616.688685 512.476723a99.277467 99.277467 0 1 1-99.158286-99.158287A99.158287 99.158287 0 0 1 616.688685 512.476723z"
+            fill="inherit"
+          ></path>
+          <path
+            d="M810.953117 848.566108c-111.314711 0-267.20298-59.590317-417.132216-159.344507-111.314711-74.249534-204.871508-161.370577-263.389199-245.154562C68.219412 354.919926 52.487568 278.286778 85.977326 228.111732c22.882682-34.443203 66.860335-52.67784 127.046555-52.67784 111.433892 0 267.32216 59.590317 417.132216 159.344507 111.433892 74.249534 205.10987 161.251397 263.62756 245.273743 62.09311 89.027933 77.824953 165.66108 44.454377 215.836126-23.121043 34.443203-67.098696 52.67784-127.284917 52.67784zM213.023881 215.240223c-32.178771 0-74.726257 5.959032-93.914339 34.919926-23.836127 35.75419-7.389199 97.489758 43.977654 171.024209C218.863732 501.154562 308.606749 583.985102 415.988499 656.089385 557.33673 750.837989 708.696134 808.759777 810.953117 808.759777c32.297952 0 74.726257-6.078212 94.03352-34.919926 23.836127-35.75419 7.270019-97.489758-43.977654-171.143389-55.776536-79.731844-145.638734-163.158287-253.020484-234.785847C466.640268 274.115456 315.280864 215.240223 213.023881 215.240223z"
+            fill="inherit"
+          ></path>
+          <path
+            d="M212.547158 840.819367c-64.357542 0-110.718808-19.426443-133.839851-56.014898-32.05959-51.128492-14.301676-127.284916 50.055866-214.525139 60.782123-82.234637 156.484171-166.852886 269.824954-238.361267C546.372112 238.361266 700.711032 183.061453 811.42984 183.061453c64.476723 0 110.837989 19.426443 133.839851 56.134078 32.178771 51.009311 14.301676 127.284916-50.055866 214.525139-60.662942 82.353818-156.484171 166.852886-269.705773 238.361267-147.903166 93.199255-302.242086 148.73743-412.960894 148.73743z m598.882682-617.832402c-102.018622 0-252.067039 54.58473-391.627561 143.016759-109.16946 68.171322-201.176909 149.214153-258.860335 227.75419-53.392924 72.223464-71.50838 134.197393-48.506518 169.832403 19.426443 30.986965 65.191806 37.422719 100.111732 37.422718 102.018622 0 252.067039-54.58473 391.627561-143.016759 109.288641-68.767225 201.176909-149.810056 258.979516-228.230913 53.273743-72.223464 71.50838-134.197393 48.387337-169.832402-19.426443-30.510242-65.191806-36.945996-100.111732-36.945996z"
+            fill="inherit"
+          ></path>
+          <path
+            d="M512.048089 1024c-119.180633 0-212.975791-224.893855-212.975791-512.476723S392.629095 0 512.048089 0s212.856611 224.893855 212.856611 512.476723-93.556797 511.523277-212.856611 511.523277z m0-984.193669c-83.426443 0-173.16946 189.735568-173.16946 472.193669s89.504655 472.193669 173.16946 472.193669S685.098369 794.458101 685.098369 512.476723 595.593713 39.806331 512.048089 39.806331z"
+            fill="inherit"
+          ></path>
+        </svg>
+      </a>
+
+      <a href="/notes/" id="notes" class="menu-item">
+        <svg
+          id="notes-icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="24"
+          height="24"
+          fill="inherit"
+          stroke="var(--gray-800)"
+          stroke-width="10px"
+        >
+          <path
+            d="M156.21688889 940.60088888l-7.28177777-7.28177777c-14.56355555-14.56355555 50.97244445-298.55288889 182.04444444-509.72444445 145.63555555-247.58044445 342.24355555-356.80711111 567.97866667-327.68h21.84533333l-7.28177777 21.84533333c-36.40888889 123.79022222-94.66311111 182.04444445-123.79022223 211.17155556-7.28177778 0-7.28177778 7.28177778-14.56355555 7.28177778-7.28177778 7.28177778-7.28177778 43.69066667-7.28177778 65.536 0 36.40888889-7.28177778 87.38133333-14.56355556 116.50844444-21.84533333 43.69066667-145.63555555 196.608-313.11644444 160.19911111-116.50844445 65.536-211.17155555 182.04444445-262.144 247.58044445l-14.56355556 14.56355555h-7.28177778zM826.14044445 117.75999999C425.64266667 117.75999999 250.88000001 642.04799999 199.90755556 845.93777777c50.97244445-72.81777778 131.072-152.91733333 225.73511111-203.88977778h14.56355556c145.63555555 36.40888889 262.144-101.94488889 283.98933333-138.35377778 7.28177778-21.84533333 14.56355555-65.536 14.56355556-101.94488888 0-43.69066667 7.28177778-65.536 14.56355555-80.09955556l21.84533334-21.84533333c29.12711111-29.12711111 72.81777778-72.81777778 109.22666666-174.76266667-29.12711111 0-43.69066667-7.28177778-58.25422222-7.28177778z"
+          ></path>
+        </svg>
+      </a>
+
+      <a href="/contact/" id="contact" class="menu-item">
+        <svg
+          id="contact-icon"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M974.966667 91.46a21.333333 21.333333 0 0 0-21.713334-5.033333l-896 298.666666a21.333333 21.333333 0 0 0-4.226666 38.533334L256 545.413333V832a21.333333 21.333333 0 0 0 36.42 15.086667L448 691.506667l240.913333 240.913333a21.333333 21.333333 0 0 0 35.426667-8.666667l256-810.666666a21.333333 21.333333 0 0 0-5.373333-21.626667zM796.666667 183.606667L277.106667 508.32 114.746667 410.906667zM298.666667 545.16l537.82-336.14-403.873334 437.533333L298.666667 780.5z m395.573333 332.24l-216.666667-216.666667 433.333334-469.426666z"
+            fill="inherit"
+          ></path>
+        </svg>
+      </a>
+    </div>
+    {% endblock %}
+
+    <div id="back-to-top">
+      <svg
+        class="top-svg"
+        viewBox="0 0 1024 1024"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+      >
+        <path
+          d="M966.4 668.8l-435.2-432c-9.6-9.6-25.6-9.6-35.2 0l-441.6 432c-9.6 9.6-9.6 25.6 0 35.2 9.6 9.6 25.6 9.6 35.2 0l425.6-416 416 416c9.6 9.6 25.6 9.6 35.2 0S976 678.4 966.4 668.8z"
+          fill="var(--gray-900)"
+        ></path>
+      </svg>
+      <div
+        style="
+          position: absolute;
+          dispaly: inline-block;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        "
+      >
+        <svg
+          class="top-circle1"
+          width="36px"
+          height="36px"
+          viewBox="0 0 102 102"
+          stroke="var(--gray-600)"
+        >
+          <path
+            class="top-circle"
+            d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+            style="
+              transition: stroke-dashoffset 10ms linear;
+              stroke-dasharray: 307.919, 307.919;
+              stroke-dashoffset: 307.919;
+            "
+            fill="none"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <script src="{% static 'plugins/jquery/jquery-3.7.1.js' %}"></script>
+    <script>
+      $(function () {
+        // 回到顶部
+        $(window).scroll(function () {
+          var scrollPosition = $(window).scrollTop();
+          var documentHeight = $(document).height();
+          var windowHeight = $(window).height();
+          var per = scrollPosition / (documentHeight - windowHeight);
+
+          if (scrollPosition > 500) {
+            $("#back-to-top").css("display", "inline-flex");
+          } else {
+            $("#back-to-top").css("display", "none");
+          }
+          const offset = 307 - per * 307;
+          //console.log(scrollPosition, per, offset);
+          $(".top-circle").css({ "stroke-dashoffset": offset });
+        });
+
+        $("#back-to-top").click(function () {
+          document.documentElement.scrollTo({
+            top: 0,
+            behavior: "smooth", // 平滑滚动
+          });
+        });
+      });
+    </script>
+
+    {% block script %}{% endblock %}
+  </body>
+</html>

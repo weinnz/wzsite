@@ -1,0 +1,293 @@
+:root {
+  --major-red-1: #962736;
+  --major-blue-1: #0366d6;
+  --major-red-2: #9f1326;
+  --major-blue-2: #1e3a8a;
+
+  --usr-theme-0: #ad1400;
+  --usr-theme-invert: #0366d6;
+  --usr-theme: #962736;
+  --usr-theme-2: #28a745;
+  --usr-theme-3: #c5a231;
+  --usr-theme-4: #6f42c1;
+
+  --usr-theme-green: #28a745;
+  --usr-theme-blue: #0366d6;
+  --usr-theme-yellow: #ffd33d;
+  --usr-theme-purple: #6f42c1;
+  --usr-theme-orange: #f66a0a;
+
+  --usr-theme-5: #4f5671;
+  --red-900: #9f1326;
+  --red-800: #b42318;
+  --red-700: #d92d20;
+  --red-600: #e94522;
+  --red-500: #f43f5e;
+  --red-400: #fb7185;
+  --red-300: #fda4af;
+  --red-200: #fecdd3;
+  --red-u1: #611813;
+  --brown-100: #4f5671;
+  --brown-800: #926254;
+  --blue-900: #1e3a8a;
+  --blue-800: #2563eb;
+  --blue-700: #3b82f6;
+  --blue-600: #60a5fa;
+  --blue-500: #93c5fd;
+  --blue-400: #bfdbfe;
+  --blue-300: #dbeafe;
+  --blue-200: #eff6ff;
+  --gray-950: #18171d;
+  --gray-900: #28272d;
+  --gray-800: #31383f;
+  --gray-700: #4c4b51;
+  --gray-600: #626168;
+  --gray-500: #737278;
+  --gray-400: #89888d;
+  --gray-300: #a4a3a8;
+  --gray-200: #bfbfc3;
+  --gray-100: #dcdcde;
+  --gray-50: #ececef;
+  --gray-10: #fbfafd;
+  --gray-0: #ffffff;
+  --u1: #025e8d;
+  --u2: #0088cc;
+  --u3: #eff6fb;
+  --u4: #17445a;
+  --u5: #002d5b;
+  --u6: #006699;
+  --u7: #b10f10;
+  --u8: #14303e;
+}
+
+body,
+html {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif,
+    "Gill Sans",
+    "Gill Sans MT",
+    Calibri,
+    "Trebuchet MS",
+    sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.main {
+  background: var(--gray-900);
+  width: 100vw;
+  height: 100vh;
+}
+
+.home-bg {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home-bg img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(1.15);
+  transition:
+    opacity 1.5s linear,
+    transform 10s linear;
+}
+
+.show {
+  opacity: 1 !important;
+}
+.zoom {
+  transform: scale(1) !important;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gray-800);
+  opacity: 0.35; /* 关灯 0.65，开灯 0.35*/
+  z-index: 5;
+}
+
+.home-header {
+  position: absolute;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  top: 0;
+  padding: 0 45px;
+  width: 100%;
+  height: 66px;
+  z-index: 100;
+}
+
+#logo-icon {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  fill: var(--gray-0);
+  padding: 5px;
+  z-index: 10;
+}
+
+#logo-icon:hover {
+  cursor: pointer;
+}
+
+#logo-word {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(0px);
+  transition: all 0.3s linear;
+  pointer-events: none;
+}
+
+#logo-word img {
+  width: 120px;
+  transform: translate(-5px, 8px) rotate(-8deg);
+}
+
+.slideup {
+  transform: translateY(-5px) !important;
+  opacity: 1 !important;
+}
+
+.lamp-container {
+  position: relative;
+  color: var(--gray-900);
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+.lamp-icon {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  fill: var(--gray-50);
+  opacity: 0;
+  transition: all 1s ease-out;
+  cursor: pointer;
+}
+
+.lamp-icon::before {
+  position: absolute;
+  left: -7px;
+  top: 5px;
+  content: "(";
+  font-weight: normal;
+  color: var(--major-red-1);
+}
+.lamp-icon::after {
+  position: absolute;
+  right: -5px;
+  top: 5px;
+  content: ")";
+  font-weight: normal;
+  color: var(--major-blue-2);
+}
+
+#close-lamp {
+  display: none;
+}
+
+#search {
+  stroke: var(--gray-0);
+  stroke-width: 1.2px;
+  stroke-miterlimit: 10px;
+  width: 34px;
+  height: 34px;
+  fill: none;
+  padding: 5px;
+}
+
+.menu-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 90%;
+  max-width: 800px;
+  min-width: 640px;
+  transform: translate(-50%, -40%);
+  text-align: center;
+  z-index: 100;
+}
+
+#name {
+  font-family: 'comic neue';
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: 0.5rem;
+  color: var(--gray-10);
+  margin-bottom: 2vh;
+}
+
+#signature {
+  font-size: 0.8rem;
+  color: var(--gray-200);
+  font-family: "Comic Neue";
+  font-weight: light;
+}
+
+.home-menu {
+  position: relative;
+  display: inline-flex;
+  margin-top: 11vh;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Comic Neue";
+  font-weight: light;
+}
+
+.home-menu a {
+  text-decoration: none;
+  color: var(--gray-100);
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  fill: var(--gray-50);
+}
+
+.home-menu .menu-icon {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 10px auto;
+}
+
+.home-menu a:hover {
+  color: var(--gray-0);
+  fill: var(--gray-0);
+  text-shadow: 0 0 3px var(--gray-0);
+}

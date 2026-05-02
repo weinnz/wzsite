@@ -1,0 +1,54 @@
+/* 通用写法 */
+::placeholder {
+  color: rgb(154, 154, 154);
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.8; /* 设置完全不透明 */
+}
+
+.logo-container {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 20vh auto 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 36px;
+  margin: 10vh auto;
+  border: #d9d9d9 1px solid;
+  border-radius: 2rem;
+}
+
+#search-icon {
+  margin-left: 0.5rem;
+  stroke: #252525;
+  stroke-width: 1.2px;
+  stroke-miterlimit: 10px;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  opacity: 0.5;
+  padding: 5px;
+}
+
+input {
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  width: 80%;
+  height: 90%;
+  flex-grow: 1.2;
+  font-size: 1rem;
+  color: #606060;
+  font-weight: 200;
+  line-height: 1.2rem;
+  margin-right: 0.5rem;
+}

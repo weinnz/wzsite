@@ -1,0 +1,270 @@
+{% extends "base.html" %} {% load static %} {% block title %}{{note.title}} | Weinnz{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/note_detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/article.css' %}" />
+
+{% endblock%} {% block main%}
+
+<div class="main">
+  <div class="content-container">
+    <div class="content-body">
+      <div id="title">{{note.title}}</div>
+      <div id="info">
+        <div>
+          <span style="font-weight: 300; margin-right: 5px">by</span
+          >{{note.user}}
+        </div>
+        <div>
+		<span style="font-weight: 300; margin-right: 5px">published</span>
+		{{note.publish_time | date:"Y-m-d G:i:s"}}</div>
+      </div>
+      <div id="content">{{note_content | safe}}</div>
+
+      <div id="footer">
+        <div class="view-like-comment">
+          <div class="footer-view">
+            <span><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M512 195.047619c150.79619 0 288.280381 92.013714 412.42819 276.041143a73.142857 73.142857 0 0 1 2.755048 77.385143l-2.755048 4.437333-6.92419 10.118095C795.184762 740.303238 659.992381 828.952381 512 828.952381c-150.79619 0-288.280381-92.013714-412.42819-276.041143a73.142857 73.142857 0 0 1-2.755048-77.385143l2.755048-4.437333 6.92419-10.118095C228.815238 283.696762 364.007619 195.047619 512 195.047619z m0 73.142857c-120.880762 0-235.471238 75.142095-345.088 234.008381L160.207238 512l6.729143 9.825524C276.650667 680.740571 391.216762 755.809524 512 755.809524c120.880762 0 235.471238-75.142095 345.088-234.008381l6.704762-9.801143-6.729143-9.825524C747.349333 343.259429 632.783238 268.190476 512 268.190476z m0 88.551619a161.694476 161.694476 0 1 1 0 323.364572 161.694476 161.694476 0 0 1 0-323.364572z m0 73.142857a88.551619 88.551619 0 1 0 0 177.078858 88.551619 88.551619 0 0 0 0-177.078858z"></path></svg></span>
+            <span>{{note.views_count}}</span>
+
+          </div>
+          <div class="footer-like">
+            <span>
+              <svg id="like-icon" fill="{{like_fill}}"           stroke="#000000"
+          stroke-width= "38" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M667.786667 117.333333C832.864 117.333333 938.666667 249.706667 938.666667 427.861333c0 138.250667-125.098667 290.506667-371.573334 461.589334a96.768 96.768 0 0 1-110.186666 0C210.432 718.368 85.333333 566.112 85.333333 427.861333 85.333333 249.706667 191.136 117.333333 356.213333 117.333333c59.616 0 100.053333 20.832 155.786667 68.096C567.744 138.176 608.170667 117.333333 667.786667 117.333333z"></path></svg>
+              
+            </span>            <span id="like-count">{{note.likes_count}}</span>
+          </div>
+          <div class="footer-comment">
+            <span><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M514.133333 938.666667c-6.4 0-10.666667-2.133333-14.933333-6.4l-104.533333-106.666667c-8.533333-8.533333-8.533333-21.333333 0-29.866667 8.533333-8.533333 21.333333-8.533333 29.866666 0l89.6 91.733334 91.733334-91.733334c4.266667-4.266667 8.533333-6.4 14.933333-6.4h192c34.133333 0 64-27.733333 64-64V256c0-34.133333-27.733333-64-64-64h-597.333333c-34.133333 0-64 27.733333-64 64v469.333333c0 36.266667 27.733333 64 64 64h108.8c12.8 0 21.333333 8.533333 21.333333 21.333334s-8.533333 21.333333-21.333333 21.333333h-108.8c-59.733333 0-106.666667-46.933333-106.666667-106.666667V256c0-59.733333 46.933333-106.666667 106.666667-106.666667h597.333333c57.6 0 106.666667 46.933333 106.666667 106.666667v471.466667c0 57.6-46.933333 106.666667-106.666667 106.666666h-183.466667l-100.266666 100.266667c-4.266667 2.133333-10.666667 4.266667-14.933334 4.266667z" fill="#666666"></path><path d="M309.333333 533.333333c-29.866667 0-53.333333-23.466667-53.333333-53.333333s23.466667-53.333333 53.333333-53.333333 53.333333 23.466667 53.333334 53.333333-23.466667 53.333333-53.333334 53.333333zM512 533.333333c-29.866667 0-53.333333-23.466667-53.333333-53.333333S482.133333 426.666667 512 426.666667s53.333333 23.466667 53.333333 53.333333S541.866667 533.333333 512 533.333333zM714.666667 533.333333c-29.866667 0-53.333333-23.466667-53.333334-53.333333s23.466667-53.333333 53.333334-53.333333 53.333333 23.466667 53.333333 53.333333-23.466667 53.333333-53.333333 53.333333z" fill="#666666"></path></svg></span>
+            <span class="comment-count">{{note.comments_count}}</span>
+          </div>
+
+        </div>
+        <div class="update-time">Lastest update: {{note.update_time | date:"Y-m-d G:i:s"}}</div></div>
+
+      {% comment %} <div id="comment-container">
+        <div class="comment-body">
+
+          <div class="comment-summary">
+            <span>111</span><span>comment(s)</span>
+          </div>
+
+          <div class="input-body">
+
+            <div class="input-header">
+              <div class="nickname">
+                <label for="nickname">Nickname*</label>
+                <input autocomplete="username" id="nickname" type="text">
+              </div>
+              <div class="email">
+                <label for="email">Email*</label>
+                <input autocomplete="email" id="email" type="text">
+              </div>
+            </div>
+
+            <textarea id="input-area" placeholder="say something"></textarea>
+            <div class="input-footer">
+                <button type="submit">send</button>
+            </div>
+          </div>
+            <div class="comment-content-container">
+              <div class="comment-item">
+                <div class="comment-item-header">
+                  <div class="c-photo">: )</div>
+                  <div class="c-info">
+                    <div class="c-info-nickname">wzhang</div>
+                    <div class="c-info-t">2015-03-25 18:29:30</div>
+                  </div>
+                </div>
+                <div class="comment-text">this is a comment.</div>
+              </div>
+
+              <div class="comment-item">
+                <div class="comment-item-header">
+                  <div class="c-photo">: )</div>
+                  <div class="c-info">
+                    <div class="c-info-nickname">wzhang</div>
+                    <div class="c-info-t">2015-03-25 18:29:30</div>
+                  </div>
+                </div>
+                <div class="comment-text">this is a comment.</div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div> {% endcomment %}
+
+      <div id="comment-container">
+        <div class="comment-body">
+
+          <div class="comment-summary">
+            <span class="comment-count">{{ note.comments_count }}</span><span>comment(s)</span>
+          </div>
+
+          <form class="input-body">
+            {% csrf_token %}
+            <div class="input-header">
+              <div class="nickname">
+                <label for="nickname">Nickname*</label>
+                <div class="input-container">
+                {{ comment_form.nickname }}
+                <div class="nickname-error"></div>
+                {% comment %} <input autocomplete="username" id="nickname" type="text"> {% endcomment %}
+                </div>
+              </div>
+              <div class="email">
+                <label for="email">Email*</label>
+
+                <span class="input-container">
+                {{ comment_form.email }}
+                <div class="email-error"></div>
+                {% comment %} <input autocomplete="email" id="email" type="text"> {% endcomment %}
+                </span>
+              </div>
+            </div>
+
+            <div class="input-content-container">
+            {{ comment_form.content }}
+            <div class="content-error"></div>
+            {% comment %} <textarea id="input-area" placeholder="say something"></textarea> {% endcomment %}
+            </div>
+            <div class="input-footer">
+                <button id = "submit" type="submit">send</button>
+            </div>
+          </form>
+
+            <div class="comment-content-container">
+              {% for comment in comments %}
+              <div class="comment-item">
+                <div class="comment-item-header">
+                  <div class="c-photo" style="background-color: {{ comment.color }};">{{ comment.profile_icon }}</div>
+                  <div class="c-info">
+                    <div class="c-info-nickname">{{ comment.nickname }}</div>
+                    <div class="c-info-t">{{ comment.create_time | date:"Y-m-d H:i:s" }}</div>
+                  </div>
+                </div>
+                <div class="comment-text">{{ comment.content }}</div>
+              </div>
+              {% endfor %}
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block script %}
+<script>
+
+/*
+  $(function () {
+    $(".footer-like").click(function(){
+      
+      $.ajax({
+        url: "/notes/task/like-toggle/",
+        type: "post",
+        data: {
+          note_id: "{{ note.id }}",
+        },
+        success: function (res) {
+          $("#like-icon").css("fill", res.like_fill);
+          $("#like-count").text(res.likes_count);
+        },
+      });
+    });
+
+
+    $(".footer-comment").click(function(){
+      $("#comment-container").css("display", "block");
+      $('html, body').animate({
+        scrollTop: $('#comment-container').offset().top
+      }, 800);
+    
+    });
+  });
+*/
+  $(function () {
+    $(".footer-like").click(function(){
+      $.ajax({
+        url: "/notes/task/like-toggle/",
+        type: "post",
+        data: {
+          note_id: "{{ note.id }}",
+        },
+        success: function (res) {
+          $("#like-icon").css("fill", res.like_fill);
+          $("#like-count").text(res.likes_count);
+        },
+      });
+    });
+
+    $("#submit").click(function (e) {
+      e.preventDefault();
+      $(this).prop("disabled", true);
+      $(this).text("input checking...");
+      $(this).css({"font-size": "0.5rem", "color": "var(--gray-500)"});
+      t1 = setTimeout(() => {
+              $("#submit").text("robot checking...");
+            }, 1000);
+      $.ajax({
+        url: "/notes/task/post-comment/",
+        type: "post",
+        data: {
+          note_id: "{{ note.id }}",
+          nickname: $("#nickname").val(),
+          email: $("#email").val(),
+          content: $("#input-area").val(),
+        },
+        success: function (res) {
+          if (res.status){
+            clearTimeout(t1);
+            $("#submit").text("comment posted ✓");
+           $(".input-body")[0].reset();
+           $(".comment-content-container").prepend(res.comment_html);
+           $(".comment-count").text(res.comments_count);
+           
+        setTimeout(() => {
+              $("#submit").text("send");
+              $("#submit").css({"font-size": "0.65rem", "color": "var(--gray-700)"});
+              $("#submit").prop("disabled", false);
+            }, 1000);
+          }
+          else {
+            clearTimeout(t1);
+            $("#submit").css({"font-size": "0.65rem", "color": "var(--gray-700)"});
+            $("#submit").text("send");
+            $(".nickname-error").text(res.error.nickname);
+            $(".email-error").text(res.error.email);
+            $(".content-error").text(res.error.content);
+            $("#submit").prop("disabled", false);
+          }
+        },
+      });
+    });
+
+    $(".input-body input, .input-body textarea").focus(function(){
+      $(this).nextAll("div.nickname-error").text("");
+      $(this).nextAll("div.email-error").text("");
+      $(this).nextAll("div.content-error").text("");
+    });
+
+
+    $(".footer-comment").click(function(){
+      $("#comment-container").css("display", "block");
+      $('html, body').animate({
+        scrollTop: $('#comment-container').offset().top
+      }, 800);
+    
+    });
+  });
+</script>
+
+{% endblock %}

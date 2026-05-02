@@ -1,0 +1,616 @@
+{% extends "base.html" %} {% load static %} {% block title %}Blog | Weinnz{% endblock %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}" />
+
+{% endblock%} {% block top-navbar %}
+<div class="top-navbar">
+  <div class="top-navbar-container">
+    <div class="navbar-menu">
+      <a href="/" class="left">
+        <svg
+          id="logo"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+        >
+          {% comment %}
+          <g transform="rotate(-90 512 512)">
+            {% endcomment %}
+            <path
+              d="M224 272c-27.2 0-48-20.8-48-48s20.8-48 48-48 48 20.8 48 48-20.8 48-48 48z m576 0c-27.2 0-48-20.8-48-48s20.8-48 48-48 48 20.8 48 48-20.8 48-48 48zM512 864c-180.8 0-344-108.8-412.8-275.2-6.4-16 1.6-35.2 17.6-41.6 16-6.4 35.2 1.6 41.6 17.6C217.6 707.2 356.8 800 512 800c155.2 0 294.4-92.8 355.2-236.8 6.4-16 25.6-24 41.6-17.6 16 6.4 24 25.6 17.6 41.6C856 755.2 692.8 864 512 864z"
+              fill="inhert"
+            ></path>
+            {% comment %}
+          </g>
+          {% endcomment %}
+        </svg>
+      </a>
+
+      <div class="middle">
+        <div class="nav-item" id="articles">Articles</div>
+        <svg
+          class="icon"
+          viewBox="0 0 600 600"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          style="margin: 0 60px 0 20px"
+        >
+          <path
+            d="M531.185456 943.532317c0 8.899694-6.493901 16.114003-14.503319 16.114003l-9.364275 0c-8.010441 0-14.504342-7.214309-14.504342-16.114003L492.81352 80.46666c0-8.898671 6.493901-16.114003 14.504342-16.114003l9.364275 0c8.009418 0 14.503319 7.215332 14.503319 16.114003L531.185456 943.532317z"
+            fill="var(--gray-100)"
+          ></path>
+        </svg>
+        <div class="nav-item" id="columns" style="margin-right: 80px">
+          <span>Columns</span>
+        </div>
+        <div class="nav-item" id="tags" style="padding: 0 0.8rem">
+          <span>Tags</span>
+        </div>
+      </div>
+      <a href="/search/" class="right">
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="inhert"
+        >
+          <path
+            d="M11.2553 18.5261C15.2665 18.5261 18.5183 15.2743 18.5183 11.2631C18.5183 7.25179 15.2665 4 11.2553 4C7.24397 4 3.99219 7.25179 3.99219 11.2631C3.99219 15.2743 7.24397 18.5261 11.2553 18.5261Z"
+            stroke-width="1.2"
+            stroke-miterlimit="10"
+          ></path>
+          <path
+            d="M16.3613 16.3633L20.6894 20.6914"
+            stroke-width="1.2"
+            stroke-miterlimit="10"
+          ></path>
+        </svg>
+      </a>
+    </div>
+    <div class="navbar-drop-down-list">
+      <div id="drop-down-list-articles">
+        <span class="category-list-items">ALL</span>
+        {% for obj in category_list %}
+        <span class="category-list-items">{{obj.name}}</span>
+        {% endfor %}
+      </div>
+
+      <div id="drop-down-list-columns">
+        {% for obj in column_list %}
+        <span class="column-list-items">{{obj.name}}</span>
+        {% endfor %}
+      </div>
+      <div id="drop-down-list-tags">
+        {% for obj in tag_list %}
+        <span class="tag-list-items">{{obj.name}}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="top-navbar-bg"></div>
+
+{% endblock%} {% block main%}
+
+<div class="content-area">
+  <div class="post-bar">
+    <span class="post-bar-left">
+      <span id="cate-1" style="color: var(--gray-300) !important"
+        >Articles</span
+      >
+      <svg
+        class="chevron"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        p-id="7846"
+        width="32"
+        height="32"
+      >
+        <path
+          d="M593.92 245.76h61.44L409.6 1024H348.16z"
+          fill="var(--gray-800)"
+        ></path>
+      </svg>
+      <span id="cate-2" style="color: var(--gray-700) !important">ALL</span>
+      <span
+        style="
+          display: inline-block;
+          padding: 1px 5px;
+          margin-left: 8px;
+          margin-top: 2px;
+          line-height: 0.65rem;
+          font-size: 0.45rem;
+          color: var(--gray-500);
+          background: var(--gray-50);
+          border-radius: 2rem;
+        "
+        >{{num}} results</span
+      >
+    </span>
+
+    <span class="post-bar-right">
+      <div class="sort-bar">
+        <span style="color: var(--gray-200); margin-right: 5px">Sort by:</span>
+        <span id="sort">Recent</span>
+        <svg
+          class="down-icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+        >
+          <path
+            d="M54.4 348.8l428.8 416c9.6 6.4 19.2 9.6 28.8 9.6 9.6 0 22.4-3.2 28.8-9.6l428.8-416c16-12.8 16-35.2 0-48s-41.6-12.8-54.4 0L512 688 108.8 300.8c-12.8-16-38.4-16-54.4 0-16 12.8-16 35.2 0 48z"
+            fill="inherit"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="sort-item-container">
+        <div class="sort-item-down-list">
+          {% for item, status in sort_items %}
+          <span class="sort-item {{status}}">{{item}}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </span>
+  </div>
+
+  <ul class="post-container">
+    {% for obj, category, columns, tags in blog_list %}
+    <li class="post-item">
+      <div class="post-content">
+        <div class="post-content-info">
+          {% comment %}
+          <div class="post-content-category">{{category}}</div>
+          {% endcomment %} {% for column in columns %}
+          <div class="post-content-columns-items">{{column}}</div>
+          {% endfor %}
+          <div class="post-content-date">{{obj.publish_time|date}}</div>
+        </div>
+        <div class="post-content-body">
+          <div class="post-content-txt">
+            <div class="post-content-header">
+              <div class="post-content-tags">
+                <span
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    font-size: 0.6rem;
+                    font-weight: 400;
+                    border: 1px var(--gray-300) solid;
+                    border-radius: 0.6rem;
+                    margin: 0 8px 0;
+                    padding: 0px 10px;
+                    text-align: center;
+                    color: var(--gray-500);
+                  "
+                  >{{category}}</span
+                >
+                {% comment %}
+                <svg
+                  t="1768063249106"
+                  class="icon"
+                  viewBox="0 0 1024 1024"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  p-id="1654"
+                  width="25"
+                  height="16"
+                  style="
+                    height: 18px;
+                    margin: 0 20px 0 2px;
+                    border: 0px var(--gray-300) solid;
+                    border-radius: 0px;
+                  "
+                >
+                  <path
+                    d="M512 302.193577c-177.805592 0-322.454016 144.650471-322.454016 322.457086 0 177.802522 144.648424 322.456063 322.454016 322.456063 177.805592 0 322.452993-144.652518 322.452993-322.456063C834.45197 446.845071 689.806615 302.193577 512 302.193577zM512 871.232664c-135.966695 0-246.583025-110.6194-246.583025-246.583025 0-135.958508 110.61633-246.587118 246.583025-246.587118 135.962601 0 246.583025 110.629633 246.583025 246.587118C758.582001 760.613264 647.962601 871.232664 512 871.232664z"
+                    fill="var(--gray-300)"
+                    p-id="1655"
+                  ></path>
+                  <path
+                    d="M474.061946 552.688701 549.934984 552.688701 549.934984 731.345684 474.061946 731.345684 474.061946 552.688701Z"
+                    fill="var(--gray-300)"
+                    p-id="1656"
+                  ></path>
+                  <path
+                    d="M398.190955 401.928069 398.190955 247.605308c0-52.289923 42.509163-94.841042 94.750991-94.841042l38.137599 0c52.242851 0 94.729501 42.551118 94.729501 94.841042l0 152.669098c27.199479 10.069333 52.676733 23.706935 75.868945 40.3418L701.67799 247.605308c0-94.116541-76.538187-170.712033-170.598446-170.712033l-38.137599 0c-94.070492 0-170.621982 76.57298-170.621982 170.712033l0 196.179055C345.437473 426.615331 370.925984 412.474262 398.190955 401.928069z"
+                    fill="var(--gray-300)"
+                    p-id="1657"
+                  ></path>
+                </svg>
+                {% endcomment %} {% for tag in tags %}
+                <span class="post-content-tags-items">{{tag}}</span>
+                {% endfor %}
+              </div>
+              <div class="post-content-reading-info">
+                <span class="post-content-word-counts"
+                  >{{obj.words_count}} words</span
+                >
+                <span class="post-content-reading-time"
+                  >{{obj.read_time}} min read</span
+                >
+              </div>
+            </div>
+
+            <a
+              href="/blog/details/{{ obj.id }}"
+              target="_blank"
+              style="text-decoration: none; color: inherit"
+            >
+              <h3 class="post-content-title slide">{{obj.title}}</h3>
+            </a>
+            <div class="post-content-description">{{obj.abstract}}</div>
+            <div class="post-content-bottom">
+              <span class="post-content-author">by {{obj.user.name}}</span>
+              <span class="post-content-separator">·</span>
+              <span class="post-content-comments"
+                >{{obj.views_count}} views</span
+              >
+              <span class="post-content-separator">·</span>
+              <span class="post-content-shares">{{obj.likes_count}} likes</span>
+              <span class="post-content-separator">·</span>
+              <span class="post-content-views"
+                >{{obj.comments_count}} comments</span
+              >
+            </div>
+          </div>
+          <div class="post-content-img" style="display: none;">
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div id="page_nav">{{page_nav}}</div>
+</div>
+<div class="copyright" style="text-wrap: nowrap; flext-wrap: nowrap;">
+  <img src="{% static 'img/logo.jpg' %}" width="18px" height="18px" />
+  <span>Copyright © 2026 weinnz.com. All rights are reserved.</span
+  ><span style="margin: 0 10px">浙ICP备2025220865号-1</span
+  ><span>浙公网安备33010802014278号</span>
+</div>
+
+{% endblock %} {% block script %}
+<script src="{% static 'plugins/jquery/jquery-3.7.1.js' %}"></script>
+<script>
+  $(function () {
+    {% comment %} $("#logo").click(function () {
+      $(".hide").css("transform", "none");
+      $(".content-area").css("margin-left", "18vw");
+    });
+
+    $("#left").click(function () {
+      $(".hide").css("transform", "translateX(-100%)");
+      $(".content-area").css("margin-left", "12vw");
+    }); {% endcomment %}
+    // 超链接动态
+    {% comment %} $(".slide").mouseenter(function () {
+      $(this).removeClass("nohovered");
+    });
+    $(".slide").mouseleave(function () {
+    $(this).addClass("nohovered");
+    }); {% endcomment %}
+    // 超链接动态 - 适应ajax更新后仍旧有效
+    $("body").on("mouseenter", ".slide", function () {
+      $(this).removeClass("nohovered");
+    });
+    $("body").on("mouseleave", ".slide", function () {
+    $(this).addClass("nohovered");
+    });
+
+
+    // 鼠标移入移出
+    $("#articles").mouseenter(function () {
+            let tmpH1 = $("#drop-down-list-articles").height() + 40;
+      let tmpH2 = tmpH1 + $(".top-navbar").height();
+      $("#drop-down-list-articles").css({
+        transform: "translateY(-3px)",
+        opacity: "1",
+        "pointer-events": "auto",
+      });
+      $("#drop-down-list-tags").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+        "pointer-events": "none",
+      });
+      $("#drop-down-list-columns").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+        "pointer-events": "none",
+      });
+      $(".top-navbar-bg").css("height", tmpH2);
+      $(".navbar-drop-down-list").css("height", tmpH1);
+      $(".navbar-menu").addClass("change-font");
+      $(this).addClass("ishover");
+      $("#tags").removeClass("ishover");
+      $("#columns").removeClass("ishover");
+    });
+    //
+    $("#columns").mouseenter(function () {
+      let tmpH1 = $("#drop-down-list-columns").height() + 40;
+      let tmpH2 = tmpH1 + $(".top-navbar").height();
+      $("#drop-down-list-columns").css({
+        transform: "translateY(-3px)",
+        opacity: "1",
+        "pointer-events": "auto",
+      });
+      $("#drop-down-list-tags").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+        "pointer-events": "none",
+      });
+      $("#drop-down-list-articles").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+        "pointer-events": "none",
+      });
+      $(".top-navbar-bg").css("height", tmpH2);
+      $(".navbar-drop-down-list").css("height", tmpH1);
+      $(".navbar-menu").addClass("change-font");
+      $(this).addClass("ishover");
+      $("#tags").removeClass("ishover");
+      $("#articles").removeClass("ishover");
+    });
+    //
+    $("#tags").mouseenter(function () {
+      let tmpH1 = $("#drop-down-list-tags").height() + 40;
+      let tmpH2 = tmpH1 + $(".top-navbar").height();
+
+      $("#drop-down-list-tags").css({
+        transform: "translateY(-3px)",
+        opacity: "1",
+        "pointer-events": "auto",
+      });
+      $("#drop-down-list-columns").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+        "pointer-events": "none",
+      });
+      $("#drop-down-list-articles").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+        "pointer-events": "none",
+      });
+      $(".top-navbar-bg").css("height", tmpH2);
+      $(".navbar-drop-down-list").css("height", tmpH1);
+      $(".navbar-menu").addClass("change-font");
+
+      $(this).addClass("ishover");
+      $("#columns").removeClass("ishover");
+      $("#articles").removeClass("ishover");
+    });
+
+    //
+    $(".top-navbar-container").mouseenter(function () {
+      {% comment %} $(".top-navbar").css({
+        "background-color": "transparent",
+      }); {% endcomment %}
+      $(".top-navbar-bg").css({
+        height: "var(--blog-header-h)",
+      });
+      {% comment %} $(".top-navbar-bg-0").css({
+        height: "var(--blog-header-h)",
+      }); {% endcomment %}
+      $(".navbar-menu").addClass("change-font");
+    });
+
+    $(".top-navbar-container").mouseleave(function () {
+      $("#drop-down-list-tags").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+      });
+      $("#drop-down-list-columns").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+      });
+      $("#drop-down-list-articles").css({
+        transform: "translateY(3px)",
+        opacity: "0",
+      });
+      $(".navbar-drop-down-list").css({ height: "0px" });
+
+      $(".top-navbar-bg").css({
+        height: "0px",
+      });
+      {% comment %} $(".top-navbar-bg-0").css({
+        height: "0px",
+      }); {% endcomment %}
+      $(".navbar-menu").removeClass("change-font");
+      $("#tags").removeClass("ishover");
+      $("#columns").removeClass("ishover");
+      $("#articles").removeClass("ishover");
+    });
+    // hover
+
+
+    $("#drop-down-list-articles span").mouseenter(function () {
+        $(this).addClass("scale-before-articles");
+    });
+    $("#drop-down-list-articles  span").mouseleave(function () {
+        $(this).removeClass("scale-before-articles");
+    });
+
+    $("#drop-down-list-columns span").mouseenter(function () {
+        $(this).addClass("scale-before-columns");
+    });
+    $("#drop-down-list-columns  span").mouseleave(function () {
+        $(this).removeClass("scale-before-columns");
+    });
+    $("#drop-down-list-tags span").mouseenter(function () {
+        $(this).addClass("scale-before-tags");
+    });
+    $("#drop-down-list-tags  span").mouseleave(function () {
+        $(this).removeClass("scale-before-tags");
+    });
+
+    // 回到顶部
+    $(window).scroll(function () {
+      var scrollPosition = $(window).scrollTop();
+      //console.log(scrollPosition);
+      if (scrollPosition > 300) {
+        $("#back-to-top").css("display", "block");
+      } else {
+        $("#back-to-top").css("display", "none");
+      }
+    });
+
+    $("#back-to-top").click(function () {
+      document.documentElement.scrollTo({
+        top: 0,
+        behavior: "smooth", // 平滑滚动
+      });
+    });
+  });
+</script>
+
+<script>
+  // ajax 加载事项: 菜单
+  $(function () {
+    $(".category-list-items").click(function () {
+      $.ajax({
+        url: "/blog/task/get-blog-by-smile/",
+        type: "post",
+        data: {
+          task: "menu",
+          type1: "Articles",
+          type2: $(this).text(),
+          lang: "zh-cn",
+          page: "1",
+          sort: $("#sort").text(),
+        },
+        success: function (res) {
+          $(".content-area").replaceWith(res);
+        },
+      });
+    });
+
+    $(".column-list-items").click(function () {
+      $.ajax({
+        url: "/blog/task/get-blog-by-smile/",
+        type: "post",
+        data: {
+          task: "menu",
+          type1: "Columns",
+          type2: $(this).text(),
+          lang: "zh-cn",
+          page: "1",
+          sort: $("#sort").text(),
+        },
+        success: function (res) {
+          $(".content-area").replaceWith(res);
+        },
+      });
+    });
+
+    $(".tag-list-items").click(function () {
+      $.ajax({
+        url: "/blog/task/get-blog-by-smile/",
+        type: "post",
+        data: {
+          task: "menu",
+          type1: "Tags",
+          type2: $(this).text(),
+          lang: "zh-cn",
+          page: "1",
+          sort: $("#sort").text(),
+        },
+        success: function (res) {
+          $(".content-area").replaceWith(res);
+        },
+      });
+    });
+  });
+</script>
+
+<script>
+  // sort
+  $(function () {
+    // 移入
+    $("body").on("mouseenter", ".sort-bar", function () {
+      $(".sort-item-container").css({
+        height: $(".sort-item-down-list").height(),
+      });
+      $(".sort-item-down-list").css("opacity", "1");
+      $(".down-icon").css("transform", "translateY(3px)");
+    });
+    $("body").on("mouseleave", ".post-bar-right", function () {
+      $(".sort-item-container").css({
+        height: 0,
+      });
+      $(".sort-item-down-list").css("opacity", "0");
+      $(".down-icon").css("transform", "translateY(0px)");
+    });
+    // 点击 ajax
+    $("body").on("click", ".sort-item", function () {
+      $.ajax({
+        url: "/blog/task/get-blog-by-smile/",
+        type: "post",
+        data: {
+          task: "sort",
+          type1: $("#cate-1").text(),
+          type2: $("#cate-2").text(),
+          lang: "zh-cn",
+          page: "1",
+          sort: $(this).text(),
+        },
+        success: function (res) {
+          $(".content-area").replaceWith(res);
+        },
+      });
+    });
+  });
+</script>
+
+<script>
+  // ajax 加载事项: 翻页
+  $(function () {
+    $("body").on("click", "#prev", function () {
+      $.ajax({
+        url: "/blog/task/get-blog-by-smile/",
+        type: "post",
+        data: {
+          task: "prev",
+          type1: $("#cate-1").text(),
+          type2: $("#cate-2").text(),
+          lang: "zh-cn",
+          page: $("#page_n").text(),
+          sort: $("#sort").text(),
+        },
+        success: function (res) {
+          $(".content-area").replaceWith(res);
+        },
+      });
+    });
+    $("body").on("click", "#next", function () {
+      $.ajax({
+        url: "/blog/task/get-blog-by-smile/",
+        type: "post",
+        data: {
+          task: "next",
+          type1: $("#cate-1").text(),
+          type2: $("#cate-2").text(),
+          lang: "zh-cn",
+          page: $("#page_n").text(),
+          sort: $("#sort").text(),
+        },
+        success: function (res) {
+          $(".content-area").replaceWith(res);
+        },
+      });
+    });
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,146 @@
+{% load static %}
+<div class="content-area">
+  <div class="post-bar">
+    <span class="post-bar-left">
+      <span id="cate-1" style="color: var(--gray-300) !important"
+        >{{type1}}</span
+      >
+      <svg
+        class="chevron"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        p-id="7846"
+        width="32"
+        height="32"
+      >
+        <path
+          d="M593.92 245.76h61.44L409.6 1024H348.16z"
+          fill="var(--gray-800)"
+        ></path>
+      </svg>
+      <span id="cate-2" style="color: var(--gray-700) !important"
+        >{{type2}}</span
+      >
+      <span
+        style="
+          display: inline-block;
+          padding: 1px 5px;
+          margin-left: 8px;
+          margin-top: 2px;
+          line-height: 0.65rem;
+          font-size: 0.45rem;
+          color: var(--gray-500);
+          background: var(--gray-50);
+          border-radius: 2rem;
+        "
+        >{{num}} results</span
+      >
+    </span>
+
+    <span class="post-bar-right">
+      <div class="sort-bar">
+        <span style="color: var(--gray-200); margin-right: 5px">Sort by:</span>
+        <span id="sort">{{sort_by}}</span>
+        <svg
+          class="down-icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+        >
+          <path
+            d="M54.4 348.8l428.8 416c9.6 6.4 19.2 9.6 28.8 9.6 9.6 0 22.4-3.2 28.8-9.6l428.8-416c16-12.8 16-35.2 0-48s-41.6-12.8-54.4 0L512 688 108.8 300.8c-12.8-16-38.4-16-54.4 0-16 12.8-16 35.2 0 48z"
+            fill="inherit"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="sort-item-container">
+        <div class="sort-item-down-list">
+          {% for item, status in sort_items %}
+          <span class="sort-item {{status}}">{{item}}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </span>
+  </div>
+
+  <ul class="post-container">
+    {% for obj, category, columns, tags in blog_list %}
+    <li class="post-item">
+      <div class="post-content">
+        <div class="post-content-info">
+          {% comment %}
+          <div class="post-content-category">{{category}}</div>
+          {% endcomment %} {% for column in columns %}
+          <div class="post-content-columns-items">{{column}}</div>
+          {% endfor %}
+          <div class="post-content-date">{{obj.publish_time|date}}</div>
+        </div>
+        <div class="post-content-body">
+          <div class="post-content-txt">
+            <div class="post-content-header">
+              <div class="post-content-tags">
+                <span
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    font-size: 0.6rem;
+                    font-weight: 400;
+                    border: 1px var(--gray-300) solid;
+                    border-radius: 0.6rem;
+                    margin: 0 8px 0;
+                    padding: 0px 10px;
+                    text-align: center;
+                    color: var(--gray-500);
+                  "
+                  >{{category}}</span
+                >
+                {% for tag in tags %}
+                <span class="post-content-tags-items">{{tag}}</span>
+                {% endfor %}
+              </div>
+              <div class="post-content-reading-info">
+                <span class="post-content-word-counts"
+                  >{{obj.words_count}} words</span
+                >
+                <span class="post-content-reading-time"
+                  >{{obj.read_time}} min read</span
+                >
+              </div>
+            </div>
+
+            <a
+              href="/blog/details/{{ obj.id }}"
+              target="_blank"
+              style="text-decoration: none; color: inherit"
+            >
+              <h3 class="post-content-title slide">{{obj.title}}</h3>
+            </a>
+            <div class="post-content-description">{{obj.abstract}}</div>
+            <div class="post-content-bottom">
+              <span class="post-content-author">by {{obj.user.name}}</span>
+              <span class="post-content-separator">·</span>
+              <span class="post-content-comments"
+                >{{obj.views_count}} views</span
+              >
+              <span class="post-content-separator">·</span>
+              <span class="post-content-shares">{{obj.likes_count}} likes</span>
+              <span class="post-content-separator">·</span>
+              <span class="post-content-views"
+                >{{obj.comments_count}} comments</span
+              >
+            </div>
+          </div>
+          <div class="post-content-img" style="display: none;">
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div id="page_nav">{{page_nav}}</div>
+</div>

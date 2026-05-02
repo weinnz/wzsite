@@ -1,0 +1,10 @@
+APScheduler
+django
+filelock
+mistune
+pillow
+django_extensions
+django_apscheduler
+pymysql
+mysqlclient
+cryptography

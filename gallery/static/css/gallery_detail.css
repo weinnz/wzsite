@@ -1,0 +1,240 @@
+.gallery-detail-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  font-family: "Times New Roman", Times, serif;
+  gap: 50px;
+  display: none;
+}
+
+.gallery-detail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  height: 80%;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+  z-index: 1001;
+}
+
+.gallery-detail .gallery-detail-title {
+  position: absolute;
+  top: -1.5rem;
+  left: 1.5rem;
+  font-size: 2rem;
+  color: var(--gray-900);
+  letter-spacing: 0.3rem;
+  font-style: italic;
+  clip-path: inset(1.5rem 0 0 0);
+  z-index: 1003;
+}
+
+.gallery-detail .gallery-detail-title-mask {
+  position: absolute;
+  top: -1.5rem;
+  left: 1.5rem;
+  font-size: 2rem;
+  color: var(--gray-100);
+  letter-spacing: 0.3rem;
+  font-style: italic;
+  z-index: 1002;
+}
+
+.gallery-detail .gallery-detail-content {
+  position: relative;
+  margin-top: 10px;
+  width: 85%;
+  height: 88%;
+  background-color: var(--gray-300);
+}
+
+.gallery-detail .gallery-detail-info {
+  position: relative;
+  width: 85%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.5rem;
+}
+
+.gallery-detail-info-count {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  right: -4.5rem;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+#previous {
+  padding: 10px;
+  /* background-color: var(--gray-10); */
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  transition: all 0.3s linear;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--gray-900);
+  border: 1px var(--gray-200) solid;
+}
+#previous:hover {
+  background-color: var(--gray-300);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+#next {
+  padding: 10px;
+  /* background-color: var(--gray-10); */
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  transition: all 0.3s linear;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--gray-900);
+  border: 1px var(--gray-200) solid;
+}
+#next:hover {
+  background-color: var(--gray-300);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+#copyright {
+  position: absolute;
+  display: inline-block;
+  bottom: -30px;
+  font-size: 1rem;
+  color: var(--gray-300);
+}
+/* 背景 */
+.bg-icon {
+  position: fixed;
+  fill: var(--gray-50);
+  opacity: 0;
+  transition: opacity 1s ease-in;
+  z-index: 1;
+}
+#icon-cycle {
+  width: 240px;
+  height: 240px;
+  top: 15vh;
+  right: -20px;
+  transform: rotate(10deg);
+}
+#icon-coffee {
+  width: 200px;
+  height: 200px;
+  bottom: 15vh;
+  left: 300px;
+}
+#icon-read {
+  width: 120px;
+  height: 120px;
+  top: 75vh;
+  right: 15vw;
+}
+#icon-cat {
+  width: 200px;
+  height: 200px;
+  top: 28vh;
+  left: 50px;
+}
+#icon-music {
+  width: 100px;
+  height: 100px;
+  bottom: -50px;
+  left: 0px;
+}
+
+#icon-camera {
+  width: 100px;
+  height: 100px;
+  bottom: -50px;
+  right: 80px;
+}
+
+/* 展示 */
+.container {
+  padding-top: 100px;
+}
+
+#desc-container {
+  position: fixed;
+  right: 65vw;
+  display: inline-flex;
+  width: 35vw;
+  padding: 120px 0;
+  z-index: 10;
+}
+
+.gallery-desc {
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  right: 0;
+  font-size: 1.5rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  z-index: 5;
+}
+
+.gallery-desc p {
+    margin-bottom: 0.5rem;
+    line-height: 1rem;
+}
+
+#gallery-content {
+  margin: 0 auto;
+  width: 60vw;
+}
+
+.gallery-list {
+  position: relative;
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  object-fit: scale-down;
+  width: 100%;
+  z-index: 100;
+}
+
+.gallery-list img {
+  position: relative;
+  display: inline-block;
+  max-height: 85vh;
+  max-width: 80vh;
+  z-index: 100 !important;
+  margin-bottom: 88px;
+}
+
+/* .gallery-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+} */
+
+/* .gallery-item-odd img,
+.gallery-item-even img {
+  display: block;
+  min-width: 100%;
+  height: 50vh;
+  object-fit: scale-down;
+} */

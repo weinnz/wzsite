@@ -1,0 +1,7 @@
+.venv/*
+logs/*
+.DS_Store
+connect*
+*.sql
+*sql*
+mysite/settings.py
