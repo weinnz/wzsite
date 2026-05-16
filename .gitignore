@@ -1,5 +1,5 @@
 # user defined
-/logs/
+/logs
 /static
 secrets.toml
 *sql*
