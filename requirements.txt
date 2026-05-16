@@ -6,3 +6,4 @@ mistune
 
 pillow
 tomli
+pymysql
