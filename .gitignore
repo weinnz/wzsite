@@ -1,8 +1,8 @@
 # user defined
-logs/
-static/
+/logs/
+/static
 secrets.toml
-*/*sql*
+*sql*
 
 
 # Byte-compiled / optimized / DLL files

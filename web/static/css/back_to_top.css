@@ -1,0 +1,26 @@
+#back-to-top {
+  position: fixed;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  right: 35px;
+  bottom: 5vh;
+  width: 36px;
+  height: 36px;
+  z-index: 999;
+  border-radius: 36px;
+  padding: 4px;
+  display: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+#back-to-top .top-svg {
+  width: 12px;
+  height: 12px;
+  padding: auto 0;
+}
+
+#back-to-top:hover {
+  background-color: var(--gray-10);
+}
