@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% load static %} {% block title %} Gallery | Weinnz
+{%endblock%} {% block link %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+
+{% endblock%} {% block main%} {% load custom_filters %}
+<aside id="left-info">
+  <div class="info-container">
+    <div class="summary">Total: {{total_n}} images</div>
+    <div class="gallery-toc">
+      <ul>
+        <li style="font-size: 0.8rem; margin-bottom: 25px" class="now">
+          <a href="{{prev_page.url}}" class="{{prev_page.status}}">
+            {{prev_page.text}}</a
+          >
+        </li>
+        {% for object in gallery_list %}
+        <li>
+          <a class="toc-item" href="#{{object.title | change_date_format_2}}">
+            {{object.title | change_date_format_1}} ({{object.number}})
+          </a>
+        </li>
+        {% endfor %}
+        <li style="font-size: 0.8rem; margin-top: 25px" class="now">
+          <a href="{{next_page.url}}" class="{{next_page.status}}"
+            >{{next_page.text}}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="filter">
+    <span>All rights are reserved.</span>
+  </div>
+</aside>
+
+<div class="gallery-body">
+  <div id="copyright-top">© ZHANGWEI CAMERA</div>
+
+  {% for object in gallery_list %} {% if forloop.counter|divisibleby:2 %}
+  <div class="img-item-odd">
+    <a
+      href="details/{{object.id}}"
+      id="{{object.title | change_date_format_2}}"
+    >
+      <img src="{{object.cover}}" loading="lazy" />
+    </a>
+    <div class="img-info">
+      <div class="img-desc">
+        <div class="img-title">{{object.title}}</div>
+        <div class="img-title-mask">{{object.title}}</div>
+        <div class="img-desc-info">
+          <div class="img-desc-info-h1">Description : )</div>
+          <div class="img-desc-text">{{object.cover_description | safe}}</div>
+        </div>
+        <div class="img-desc-footnote">
+          <div class="img-desc-info-h2">Camera: {{object.camera}}</div>
+          <div class="img-desc-info-h2">Number: {{object.number}}</div>
+          <div class="img-desc-info-h2">Location: {{object.location}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="img-item-even">
+    <a
+      href="details/{{object.id}}"
+      id="{{object.title | change_date_format_2}}"
+    >
+      <img src="{{object.cover}}" loading="lazy" />
+    </a>
+    <div class="img-info">
+      <div class="img-desc">
+        <div class="img-title">{{object.title}}</div>
+        <div class="img-title-mask">{{object.title}}</div>
+
+        <div class="img-desc-info">
+          <div class="img-desc-info-h1">Description : )</div>
+          <div class="img-desc-text">{{object.cover_description | safe}}</div>
+        </div>
+        <div class="img-desc-footnote">
+          <div class="img-desc-info-h2">Camera: {{object.camera}}</div>
+          <div class="img-desc-info-h2">Number: {{object.number}}</div>
+          <div class="img-desc-info-h2">Location: {{object.location}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %} {% endfor %}
+
+  <div id="copyright-bottom" style="height: 100px; width: 100%"></div>
+</div>
+
+{% endblock %} {% block script %}
+<script>
+  $(function () {
+    $(window).scroll(function () {
+      var scrollPosition = $(window).scrollTop();
+      var windowH = $(window).height();
+      var documentH = $(document).height();
+	    console.log(scrollPosition, windowH, documentH);
+	    if (scrollPosition + windowH + 20 > documentH){
+          	$(".toc-item").removeClass("active");
+		$($(".toc-item").last()).addClass("active");
+	    }
+	    else{
+      $($(".toc-item").get().reverse()).each(function () {
+        var href = $(this).attr("href");
+        var targetOffset = $(href).offset().top;
+        if (targetOffset - 80 < scrollPosition) {
+          $(".toc-item").removeClass("active");
+          $(this).addClass("active");
+          return false;
+        }
+        //console.log(scrollPosition, targetOffset);
+      });}
+    });
+  });
+</script>
+{% endblock %}

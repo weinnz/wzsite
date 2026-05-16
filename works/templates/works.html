@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% load static %} {% block title %}Works | Weinnz{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/works.css' %}" />
+
+{% endblock%} {% block main%}
+
+<div id="topword">
+  <span class="emoji-word">: )</span> Knowledge is power.
+  <span class="emoji-word">: ></span>
+  <br />
+  {% comment %} /* 知识就是力量 */ {% endcomment %}
+</div>
+
+<div class="works-main">
+  <div class="works-container">
+    <div class="works-category">Web-based Applications</div>
+    <div class="apps-row">
+      <div class="works-item">
+        <div class="works-header">
+          <div class="works-icon"></div>
+          <div class="works-name">xxxxxx</div>
+        </div>
+        <div class="works-desc">
+          A fast yet powerful Python Markdown parser with renderers and plugins.
+        </div>
+        <div class="works-footer">
+          <div class="works-sign"></div>
+          <div class="works-language">Python</div>
+          <span class="works-dot">·</span>
+          <div class="last-update-time">updated on 9 Apr 2025</div>
+        </div>
+
+        <div class="works-link">
+          <svg
+            t="1769944730823"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="25039"
+            width="18"
+            height="18"
+            fill="inherit"
+          >
+            <path
+              d="M233.386667 233.386667a32 32 0 0 1 45.226666 0l457.386667 457.386666V384a32 32 0 0 1 64 0v384a32 32 0 0 1-32 32H384a32 32 0 1 1 0-64h306.773333L233.386667 278.613333a32 32 0 0 1 0-45.226666z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <div class="works-item"></div>
+    </div>
+  </div>
+
+  <div class="works-container">
+    <div class="works-category">Open Source</div>
+    <div class="apps-row">
+      <div class="works-item"></div>
+      <div class="works-item"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

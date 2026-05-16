@@ -1,0 +1,336 @@
+{% extends "base_with_color_theme.html" %} {% load static %} {% block title %}{{details.title}} | Weinnz{% endblock %}
+{% block link %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/article.css' %}"
+    />
+     <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/blog_detail.css' %}"
+    />
+
+    <link href="{% static 'css/prism-custom.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/katex.min.css' %}"/>
+
+    <script defer src="{% static 'js/katex.min.js' %}"></script>
+    <script defer src="{% static 'js/auto-render.min.js' %}"
+    onload="renderMathInElement(document.body);"></script>
+
+{% endblock%}
+
+{% block main%}
+    <div
+      style="
+        position: absolute;
+        display: inline-flex;
+        background: linear-gradient(to bottom, color-mix(in srgb, var(--usr-theme) 20%, #000000 50%), color-mix(in srgb, var(--usr-theme) 1%, #ffffff));
+        height: 200px;
+        width: 100vw;
+        z-index: 0;
+      "
+    >
+</div>
+
+    <div id="top-header">{{details.title}}</div>
+    <div class="main">
+
+
+
+	    
+      <aside class="toc_body" id="toc_">
+        
+        <nav class="toc_container">{{ toc | safe }}</nav>
+
+<div class="view-like-comment-container">
+      <div class="view-like-comment">
+      <div class="footer-like">
+        <svg 
+          id="like-icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          fill="{{ like_fill }}"
+          stroke="var(--gray-300)"
+          stroke-width= "38"
+          ><path d="M64 483.04V872c0 37.216 30.144 67.36 67.36 67.36H192V416.32l-60.64-0.64A67.36 67.36 0 0 0 64 483.04zM857.28 344.992l-267.808 1.696c12.576-44.256 18.944-83.584 18.944-118.208 0-78.56-68.832-155.488-137.568-145.504-60.608 8.8-67.264 61.184-67.264 126.816v59.264c0 76.064-63.84 140.864-137.856 148L256 416.96v522.4h527.552a102.72 102.72 0 0 0 100.928-83.584l73.728-388.96a102.72 102.72 0 0 0-100.928-121.824z">
+          </path></svg>
+        <span id="like-count">{{details.likes_count}}</span>
+      </div>
+
+
+      <div class="footer-comment">
+        <svg  class="icon" fill="var(--gray-200)" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"  width="32" height="32">
+          <path d="M157.568 751.296c-11.008-18.688-18.219-31.221-21.803-37.91A424.885 424.885 0 0 1 85.333 512c0-235.637 191.03-426.667 426.667-426.667S938.667 276.363 938.667 512 747.637 938.667 512 938.667a424.779 424.779 0 0 1-219.125-60.502A2786.56 2786.56 0 0 0 272.82 866.4l-104.405 28.48c-23.893 6.507-45.803-15.413-39.285-39.296l28.437-104.288z m65.301 3.787l-17.258 63.306 63.306-17.258a32 32 0 0 1 24.523 3.21 4515.84 4515.84 0 0 1 32.352 18.944A360.79 360.79 0 0 0 512 874.667c200.299 0 362.667-162.368 362.667-362.667S712.299 149.333 512 149.333 149.333 311.701 149.333 512c0 60.587 14.848 118.955 42.827 171.136 3.712 6.912 12.928 22.827 27.37 47.232a32 32 0 0 1 3.34 24.715z m145.995-70.774a32 32 0 1 1 40.917-49.205A159.19 159.19 0 0 0 512 672c37.888 0 73.675-13.173 102.187-36.885a32 32 0 0 1 40.917 49.216A223.179 223.179 0 0 1 512 736a223.179 223.179 0 0 1-143.136-51.69z">
+
+          </path>
+        </svg>
+        <span class="comment-count">{{details.comments_count}}</span>
+      </div>
+      </div>
+    </div>
+
+    <div id="mycat" style="position: fixed; display:flex; justify-content: center; bottom: 45px; width: 17vw; transition: all 0.5s ease-in-out; object-fit: contain; opacity: 0; transform: translateY(0px); cursor: pointer;">
+      <div style="width: 50%; position: relative;">
+      <img src="{{cat_url}}"  style="width: 100%;"/>
+      <p id="say" style="opacity:0; transition: all 0.3s ease-out; position: absolute; top: 20%; right: -30px; font-size:0.55rem; font-family: 'comic neue'; text-align: left; background-color:color-mix(in srgb, var(--usr-theme) 5%, #ffffff); border-radius: 5px; padding: 2px 5px; font-style: italic">{{cat_say}}</p>
+    <p id="say2" style="opacity:0; transition: all 0.5s ease-out; position: absolute; top: 20%; right: -30px; font-size:0.55rem; font-family: 'comic neue'; text-align: left; background-color:color-mix(in srgb, var(--usr-theme) 5%, #ffffff); border-radius: 5px; padding: 2px 5px; font-style: italic">meow meow : ~<br />leave a message?</p>
+  
+    </div>
+    </div>
+
+
+      </aside>
+
+      <article class="blog_body line-numbers">
+        <div id="blog-title">{{details.title}}</div>
+        <div id="blog-desc">
+          <span>by {{author}}</span>
+          <span>published {{details.publish_time | date:"Y-m-d"}}</span>
+          <span> views {{details.views_count}}</span> </div>
+
+
+        <div id = "write">
+        {{ details.content | safe }}
+        <div>
+
+          <div class="footer">
+            <div>Use license:
+            <a id="license" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/" style="font-size: 0.6rem;color: var(--gray-500) !important; text-decoration: none;">CC-BY-SA-4.0</a>
+            </div>  
+            <div>Lastest update: {{details.update_time | date:"Y-m-d G:i:s"}}</div>
+              
+          </div>
+
+          <div id="comment-container">
+        <div class="comment-body">
+
+          <div class="comment-summary">
+            <span class="comment-count">{{ details.comments_count }}</span><span>comment(s)</span>
+          </div>
+
+          <form class="input-body">
+            {% csrf_token %}
+            <div class="input-header">
+              <div class="nickname">
+                <label for="nickname">Nickname*</label>
+                <div class="input-container">
+                {{ comment_form.nickname }}
+                <div class="nickname-error"></div>
+                {% comment %} <input autocomplete="username" id="nickname" type="text"> {% endcomment %}
+                </div>
+              </div>
+              <div class="email">
+                <label for="email">Email*</label>
+
+                <span class="input-container">
+                {{ comment_form.email }}
+                <div class="email-error"></div>
+                {% comment %} <input autocomplete="email" id="email" type="text"> {% endcomment %}
+                </span>
+              </div>
+            </div>
+
+            <div class="input-content-container">
+            {{ comment_form.content }}
+            <div class="content-error"></div>
+            {% comment %} <textarea id="input-area" placeholder="say something"></textarea> {% endcomment %}
+            </div>
+            <div class="input-footer">
+                <button id = "submit" type="submit">send</button>
+            </div>
+          </form>
+
+            <div class="comment-content-container">
+              {% for comment in comments %}
+              <div class="comment-item">
+                <div class="comment-item-header">
+                  <div class="c-photo" style="background-color: {{ comment.color }};">{{ comment.profile_icon }}</div>
+                  <div class="c-info">
+                    <div class="c-info-nickname">{{ comment.nickname }}</div>
+                    <div class="c-info-t">{{ comment.create_time | date:"Y-m-d H:i:s" }}</div>
+                  </div>
+                </div>
+                <div class="comment-text">{{ comment.content }}</div>
+              </div>
+              {% endfor %}
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+          
+      </article>
+    </div>
+
+    
+    
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'plugins/jquery/jquery-3.7.1.js' %}"></script>
+<script>
+    $(function () {
+
+        $("#write a").mouseenter(function(){
+              $(this).removeClass("nohovered");
+          });
+        $("#write a").mouseleave(function(){
+              $(this).addClass("nohovered");
+        });
+
+        $("#mycat").mouseenter(function(){
+              $("#say").addClass("slideup2");
+          });
+           $("#mycat").mouseleave(function(){
+              $("#say").removeClass("slideup2");
+          });
+        $("#mycat").click(function(){
+          $("#say").removeClass("slideup2");
+          $("#say2").addClass("slideup2");
+           tt = setTimeout(() => {
+              $("#say2").removeClass("slideup2");
+            }, 1000);
+        });
+
+    // 监听窗口的滚动事件
+    $(window).scroll(function () {
+        // 获取滚动条的位置
+        var scrollPosition = $(window).scrollTop();
+
+        // 获取元素离窗口顶部的距离
+        var elementOffset = $("#blog-desc").offset().top;
+        var whh = $("body").height() / 3;
+
+	        var whh2 = $("body").height() / 2;
+        if (scrollPosition > whh2) {
+            $("#mycat").addClass("slideup2");
+        } else {
+            $("#mycat").removeClass("slideup2");
+        }
+
+        if (scrollPosition > elementOffset - 0) {
+            $(".toc_container").css("height", "100%");
+        } else {
+            $(".toc_container").css("height", "0");
+        }
+
+        // 判断元素的位置是否滚动到离窗口顶部300像素的位置
+        if (scrollPosition > whh) {
+            $(".view-like-comment-container").addClass("slideup");
+        } else {
+            $(".view-like-comment-container").removeClass("slideup");
+        }
+
+        // 判断元素的位置是否滚动到离窗口顶部300像素的位置
+        if (scrollPosition > elementOffset - 60) {
+            $("#top-header").addClass("top-header");
+        } else {
+            $("#top-header").removeClass("top-header");
+
+        }
+        
+      $($(".toc li a").get().reverse()).each(function () {
+        var href = $(this).attr("href");
+        var targetOffset = $(href).offset().top;
+        //console.log(targetOffset, scrollPosition);
+        if (targetOffset - 60 < scrollPosition) {
+          $(".toc li a").removeClass("active");
+          $(this).addClass("active");
+          return false;
+        }
+        //console.log(scrollPosition, targetOffset);
+      });
+
+    });
+});
+</script>
+
+<script>
+  $(function () {
+    $(".footer-like").click(function(){
+      
+      $.ajax({
+        url: "/blog/task/like-toggle/",
+        type: "post",
+        data: {
+          blog_id: "{{ details.id }}",
+        },
+        success: function (res) {
+          $("#like-icon").css("fill", res.like_fill);
+          $("#like-count").text(res.likes_count);
+        },
+      });
+    });
+
+    $("#submit").click(function (e) {
+      e.preventDefault();
+      $(this).prop("disabled", true);
+      $(this).text("input checking...");
+      $(this).css({"font-size": "0.5rem", "color": "var(--gray-500)"});
+      t1 = setTimeout(() => {
+              $("#submit").text("robot checking...");
+            }, 1000);
+      $.ajax({
+        url: "/blog/task/post-comment/",
+        type: "post",
+        data: {
+          blog_id: "{{ details.id }}",
+          nickname: $("#nickname").val(),
+          email: $("#email").val(),
+          content: $("#input-area").val(),
+        },
+        success: function (res) {
+          if (res.status){
+            clearTimeout(t1);
+            $("#submit").text("comment posted ✓");
+           $(".input-body")[0].reset();
+           $(".comment-content-container").prepend(res.comment_html);
+           $(".comment-count").text(res.comments_count);
+           
+           
+        setTimeout(() => {
+              $("#submit").text("send");
+              $("#submit").css({"font-size": "0.65rem", "color": "var(--gray-700)"});
+              $("#submit").prop("disabled", false);
+            }, 1000);
+          }
+          else {
+            clearTimeout(t1);
+            $("#submit").css({"font-size": "0.65rem", "color": "var(--gray-700)"});
+            $("#submit").text("send");
+            $(".nickname-error").text(res.error.nickname);
+            $(".email-error").text(res.error.email);
+            $(".content-error").text(res.error.content);
+            $("#submit").prop("disabled", false);
+          }
+        },
+      });
+    });
+
+    $(".input-body input, .input-body textarea").focus(function(){
+      $(this).nextAll("div.nickname-error").text("");
+      $(this).nextAll("div.email-error").text("");
+      $(this).nextAll("div.content-error").text("");
+    });
+
+
+    $(".footer-comment").click(function(){
+      $("#comment-container").css("display", "block");
+      $('html, body').animate({
+        scrollTop: $('#comment-container').offset().top
+      }, 800);
+    
+    });
+  });
+</script>
+
+<script src="{% static 'js/prism-2.js' %}"></script>
+{% endblock %}

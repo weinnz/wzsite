@@ -1,0 +1,537 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Contact | Weinnz</title>
+    <link rel="icon" href="{% static 'img/logo-32x32.jpg' %}" sizes="32x32" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/contact.css' %}"
+    />
+  </head>
+
+  <body>
+  <div style="position: relative; margin: 0; padding: 0;">
+    <div id="body-bg">
+    </div>
+
+
+    
+    <div class="scroll-down">
+    <div style="display: inline-flex; justify-content: center;align-items: center; margin-bottom: 50px;">
+    <div class="someword">(scroll down)</div>
+
+    <div class="scroll-down-line">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="position: relative; width: 100vw; height: 100vh; min-height: 660px; margin: 0 auto">
+          <div
+      class="top-navbar"
+      style="
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        padding: 0 45px;
+        height: 60px;
+        width: 100%;
+        z-index: 200;
+        box-sizing: border-box;
+      "
+    >
+      <a
+        href="/"
+        class="logo-container"
+        style="
+          display: inline-flex;
+          width: 24px;
+          height: 24px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          id="logo-svg"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+        >
+          <g transform="rotate(-90 512 512)">
+            <path
+              d="M224 272c-27.2 0-48-20.8-48-48s20.8-48 48-48 48 20.8 48 48-20.8 48-48 48z m576 0c-27.2 0-48-20.8-48-48s20.8-48 48-48 48 20.8 48 48-20.8 48-48 48zM512 864c-180.8 0-344-108.8-412.8-275.2-6.4-16 1.6-35.2 17.6-41.6 16-6.4 35.2 1.6 41.6 17.6C217.6 707.2 356.8 800 512 800c155.2 0 294.4-92.8 355.2-236.8 6.4-16 25.6-24 41.6-17.6 16 6.4 24 25.6 17.6 41.6C856 755.2 692.8 864 512 864z"
+              fill="var(--red-900)"
+              stroke="var(--red-900)"
+              stroke-width="10"
+            ></path>
+          </g>
+        </svg>
+      </a>
+      <a
+        href="/search/"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+        "
+      >
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="var(--gray-900)"
+        >
+          <path
+            d="M11.2553 18.5261C15.2665 18.5261 18.5183 15.2743 18.5183 11.2631C18.5183 7.25179 15.2665 4 11.2553 4C7.24397 4 3.99219 7.25179 3.99219 11.2631C3.99219 15.2743 7.24397 18.5261 11.2553 18.5261Z"
+            stroke-width="1.2"
+            stroke-miterlimit="10"
+          ></path>
+          <path
+            d="M16.3613 16.3633L20.6894 20.6914"
+            stroke-width="1.2"
+            stroke-miterlimit="10"
+          ></path>
+        </svg>
+      </a>
+    </div>
+
+    <div
+        style="
+          margin-top: 120px;
+          display: inline-flex;
+          width: 80%;
+          margin: 120px 10% 0 10%;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 5vw;
+          {% comment %} letter-spacing: 0.8px; {% endcomment %}
+          {% comment %} word-spacing: 2px; {% endcomment %}
+        "
+      >
+        <div>
+          <div style="margin-bottom: 100px; font-size: 2rem; font-weight: 600">
+            Hi, there! 👋
+          </div>
+
+          <div style="font-size: 1.2rem; font-weight: 400">
+            <span>An Algorithm Engineer </span
+            ><span style="color: #17445a">: )</span>
+          </div>
+          <div
+            style="
+              margin-top: 20px;
+              font-size: 0.8rem;
+              font-weight: 200;
+              max-width: 24rem;
+            "
+          >
+            <p>
+              Highly passionate about learning new technologies, skills and exploring new fields. 
+              This is also one reason why this website exists.
+            </p>
+            <p>Also a self-taught photographer. emm, with a cat named Qiqi.</p>
+
+            <p></p>
+
+            <p style="margin-top: 2rem">
+              <p>I always hope to : ></p>
+              利用知识做一些有趣的事，或是创造一些有趣的事物。x )
+            </p>
+          </div>
+
+
+      <div id = "contact-info">
+
+        <a href="javascript:void(0);" class="contact-item" id="location">
+        <svg
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="6248"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M508.8 576.7c69.3 0 125.4-56.2 125.4-125.4S578 325.9 508.8 325.9 383.4 382 383.4 451.3s56.1 125.4 125.4 125.4z m0 376.2C258 757 132.5 589.8 132.5 451.3 132.5 243.5 301 75 508.8 75s376.3 168.5 376.3 376.3c0 138.5-125.5 305.7-376.3 501.6z"
+            p-id="6249"
+          ></path>
+        </svg>
+        </a>
+
+
+        <a href="mailto:21824015@zju.edu.cn" class="contact-item" id="email">
+        <svg
+          t="1769101312666"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="7251"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M153.236734 163.111422l714.763665 0c48.810633 0 88.718697 38.475467 89.332667 85.853503l-446.458679 242.518237L64.313381 249.169581C64.722694 201.689218 104.323773 163.111422 153.236734 163.111422L153.236734 163.111422zM64.313381 341.981413l-0.409313 429.062856c0 47.787349 40.215049 86.876786 89.332667 86.876786l714.763665 0c49.117618 0 89.332667-39.089437 89.332667-86.876786L957.333067 341.776756 521.311882 573.038873c-6.651344 3.581493-14.735285 3.581493-21.386629 0L64.313381 341.981413 64.313381 341.981413zM64.313381 341.981413"
+            p-id="7252"
+          ></path>
+        </svg>
+        </a>
+
+      <a href="javascript:void(0);" class="contact-item" id="wechat">
+        <svg
+          t="1769101367863"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="8309"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M669.806592 407.742464c9.547776 0 19.083264 0.794624 28.63104 1.5872-26.249216-122.486784-154.300416-213.157888-300.652544-213.157888-163.85024 0-298.27072 113.74592-298.27072 258.510848 0 82.724864 44.541952 151.12192 119.30624 204.417024l-29.42976 91.467776 103.40352-53.295104c37.376 7.151616 67.598336 15.126528 104.99072 15.126528 8.740864 0 18.290688 0 27.838464-0.796672-6.36928-20.688896-9.547776-42.170368-9.547776-63.65184C416.077824 515.131392 528.232448 407.742464 669.806592 407.742464L669.806592 407.742464zM509.1328 325.042176c22.276096 0 37.390336 15.097856 37.390336 38.172672 0 23.07072-15.11424 38.170624-37.390336 38.170624-22.263808 0-44.541952-15.101952-44.541952-38.170624C464.592896 340.140032 486.868992 325.042176 509.1328 325.042176L509.1328 325.042176zM300.740608 401.385472c-22.263808 0-44.541952-15.101952-44.541952-38.170624 0-23.074816 22.278144-38.172672 44.541952-38.172672 22.278144 0 37.390336 15.097856 37.390336 38.172672C338.132992 386.285568 323.018752 401.385472 300.740608 401.385472L300.740608 401.385472z"
+            fill="#010102"
+            p-id="8310"
+          ></path>
+          <path
+            d="M941.029376 643.97312c0-120.897536-118.515712-220.311552-252.936192-220.311552-141.570048 0-252.932096 99.414016-252.932096 220.311552 0 121.69216 111.362048 220.342272 252.932096 220.342272 30.22848 0 59.654144-7.979008 89.880576-15.128576l81.135616 45.350912-22.278144-75.575296C896.485376 772.847616 941.029376 712.398848 941.029376 643.97312L941.029376 643.97312zM606.175232 605.804544c-15.112192 0-29.427712-14.30528-29.427712-30.226432 0-15.126528 14.31552-30.224384 29.427712-30.224384 22.263808 0 37.376 15.097856 37.376 30.224384C643.551232 591.497216 628.43904 605.804544 606.175232 605.804544L606.175232 605.804544zM770.025472 605.804544c-15.112192 0-29.427712-14.30528-29.427712-30.226432 0-15.126528 14.31552-30.224384 29.427712-30.224384 22.265856 0 37.376 15.097856 37.376 30.224384C807.401472 591.497216 792.291328 605.804544 770.025472 605.804544L770.025472 605.804544z"
+            fill="#010102"
+            p-id="8311"
+          ></path>
+        </svg>
+      </a>
+
+      <a class="contact-item" id="github" target="_blank">
+        <svg
+          t="1769101480419"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="9277"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M512 42.666667A464.64 464.64 0 0 0 42.666667 502.186667 460.373333 460.373333 0 0 0 363.52 938.666667c23.466667 4.266667 32-9.813333 32-22.186667v-78.08c-130.56 27.733333-158.293333-61.44-158.293333-61.44a122.026667 122.026667 0 0 0-52.053334-67.413333c-42.666667-28.16 3.413333-27.733333 3.413334-27.733334a98.56 98.56 0 0 1 71.68 47.36 101.12 101.12 0 0 0 136.533333 37.973334 99.413333 99.413333 0 0 1 29.866667-61.44c-104.106667-11.52-213.333333-50.773333-213.333334-226.986667a177.066667 177.066667 0 0 1 47.36-124.16 161.28 161.28 0 0 1 4.693334-121.173333s39.68-12.373333 128 46.933333a455.68 455.68 0 0 1 234.666666 0c89.6-59.306667 128-46.933333 128-46.933333a161.28 161.28 0 0 1 4.693334 121.173333A177.066667 177.066667 0 0 1 810.666667 477.866667c0 176.64-110.08 215.466667-213.333334 226.986666a106.666667 106.666667 0 0 1 32 85.333334v125.866666c0 14.933333 8.533333 26.88 32 22.186667A460.8 460.8 0 0 0 981.333333 502.186667 464.64 464.64 0 0 0 512 42.666667"
+            fill="#231F20"
+            p-id="9278"
+          ></path>
+        </svg>
+      </a>
+
+      <a href="https://space.bilibili.com/207294160" id="bilibili" target="_blank" class="contact-item">
+        <svg
+          t="1769101922789"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="21816"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M777.514667 131.669333a53.333333 53.333333 0 0 1 0 75.434667L728.746667 255.829333h49.92A160 160 0 0 1 938.666667 415.872v320a160 160 0 0 1-160 160H245.333333A160 160 0 0 1 85.333333 735.872v-320a160 160 0 0 1 160-160h49.749334L246.4 207.146667a53.333333 53.333333 0 1 1 75.392-75.434667l113.152 113.152c3.370667 3.370667 6.186667 7.04 8.448 10.965333h137.088c2.261333-3.925333 5.12-7.68 8.490667-11.008l113.109333-113.152a53.333333 53.333333 0 0 1 75.434667 0z m1.152 231.253334H245.333333a53.333333 53.333333 0 0 0-53.205333 49.365333l-0.128 4.010667v320c0 28.117333 21.76 51.157333 49.365333 53.162666l3.968 0.170667h533.333334a53.333333 53.333333 0 0 0 53.205333-49.365333l0.128-3.968v-320c0-29.44-23.893333-53.333333-53.333333-53.333334z m-426.666667 106.666666c29.44 0 53.333333 23.893333 53.333333 53.333334v53.333333a53.333333 53.333333 0 1 1-106.666666 0v-53.333333c0-29.44 23.893333-53.333333 53.333333-53.333334z m320 0c29.44 0 53.333333 23.893333 53.333333 53.333334v53.333333a53.333333 53.333333 0 1 1-106.666666 0v-53.333333c0-29.44 23.893333-53.333333 53.333333-53.333334z"
+            p-id="21817"
+          ></path>
+        </svg>
+      </a>
+
+      <a class="contact-item" id="x" target="_blank">
+        <svg
+          t="1769101606362"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="14041"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M761.759375 122h132.320625L605 452.4003125 945.08 902H678.8L470.24 629.3196875 231.599375 902H99.2l309.1996875-353.4L82.16 122h273.0403125l188.52 249.24z m-46.4390625 700.8h73.32L315.359375 197.0403125h-78.680625z"
+            fill="#2c2c2c"
+            p-id="14042"
+          ></path>
+        </svg>
+      </a>
+    </div>
+      <div class="wechat-qrcode">
+        <div id="close">
+          <span id="close-icon" class="close-item"></span>
+          <span class="close-item" style="background-color: #f4bf4f"></span>
+          <span class="close-item" style="background-color: #61c555"></span>
+        </div>
+        <div class="welcome-word">
+          "Welcome to add me on WeChat to discuss technology, skill and even entrepreneurship."
+        </div>
+        <div class="qrcode-img-container">
+            <img src="{% static 'img/wechat.jpg' %}">
+        </div>
+      </div>
+    </div>
+
+        <div style="
+        border-radius: 15px; 
+        border: 1px #252525 solid;
+        margin-top: 50px;
+        ">
+          <div style="margin: 16px 20px 0px 10px; font-size: .8rem; font-weight: 500;">Lastest Activity</div>
+          <div style="border-left: 1px #252525 solid;position: relative; margin: 0px 24px 20px 24px;">
+            
+            <div class="activity-items">
+            <div class="activity-date">2026-01-01 19:23:34</div>
+            <div>upload article 《从零搭建个人网站》</div>
+            </div>
+
+            <div class="activity-items">
+            <div class="activity-date">2026-01-01 19:23:34</div>
+            <div>upload article 《从零搭建个人网站》</div>
+            </div>
+
+            <div class="activity-items">
+            <div class="activity-date">2026-01-01 19:23:34</div>
+            <div>upload article 《从零搭建个人网站》</div>
+            </div>
+
+            <div class="activity-items">
+            <div class="activity-date">2026-01-01 19:23:34</div>
+            <div>upload article 《从零搭建个人网站》</div>
+            </div>
+
+            <div class="activity-items">
+            <div class="activity-date">2026-01-01 19:23:34</div>
+            <div>upload article 《从零搭建个人网站》</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="message-body">
+      <div class="message-bg">
+        <svg class="icon" fill="#cbcbcb" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="120" height="120"><path d="M154.752 121.792 746.624 396.736 804.48 571.776 843.264 346.816Z"></path><path d="M34.24 72.384 869.248 310.848 1024 180.928 0 58.304 498.944 726.784 712.32 428.48Z"></path><path d="M730.112 450.88 676.096 520.064 796.096 600.256Z" ></path><path d="M742.848 965.632l-7.808-14.528c39.04-20.992 100.736-59.2 127.168-103.36-19.584 16.64-46.144 32.768-73.856 32.064-21.952-0.448-41.152-11.456-56.832-32.64-28.032-37.568-11.904-87.04 20.032-113.536 27.392-22.528 73.408-33.216 113.088 10.688 13.824 15.168 22.4 31.168 25.472 47.744 23.168-34.816 33.152-74.176 28.032-112.896-5.504-43.072-29.248-81.344-66.816-107.584l9.472-13.632c41.344 29.12 67.52 71.36 73.728 118.976 6.4 49.6-9.28 99.968-44.032 142.144-0.064 0.448-0.192 0.832-0.256 1.472C879.808 880.64 804.288 932.608 742.848 965.632zM803.2 730.752c-15.552 0-29.952 6.528-41.024 15.808-26.112 21.376-39.744 61.312-17.6 90.816 12.736 16.96 27.584 25.664 44.16 26.24 0.576 0 1.152 0 1.6 0 36.16 0 71.744-36.8 84.416-51.52 1.792-19.648-5.632-38.272-22.4-56.832C836.224 737.536 819.072 730.752 803.2 730.752z" ></path></svg>
+      
+      </div>
+
+<div style="font-family: 'Comic Neue'; font-size: 2rem; font-weight: 500;">
+  <span style="color: var(--usr-theme-green);">LeAvE</span><span style="color: var(--usr-theme-purple);"> a</span><span style="color: var(--usr-theme-orange);"> MeSsAgE</span></div>
+      <form class="message-container">
+        {% csrf_token %}
+        <div class="send-header">
+          <div class="send-nickname">
+            <label for="nickname">Nickname*</label>
+            <div class="input-container">
+            {{message_form.nickname}}
+            <div class="nickname-error"></div></div>
+            {% comment %} <input autocomplete="username" id="nickname" type="text"> {% endcomment %}
+          </div>
+          <div class="send-email">
+            <label for="usremail">Email*</label>
+            <div class="input-container">
+            {{message_form.email}}
+            <div class="email-error"></div></div>
+            {% comment %} <input autocomplete="email" id="email" type="text"> {% endcomment %}
+          </div>
+        </div>
+
+        <div class="input-content-container">
+        {{message_form.content}}
+        <div class="content-error"></div>
+      </div>
+        {% comment %} <textarea id="input-area" placeholder="write a comment or say something"></textarea> {% endcomment %}
+        <div class="send-footer">
+          <div>
+          <input id="not_public" type="checkbox" value="true">
+          <label for="not_public">not public</label>
+          </div>
+          <button id="submit" type="submit">send</button>
+        </div>
+
+        <div style="display: flex; width: 100%; justify-content: flex-start; fill: #b8c4c9; margin-left: 25px;">
+          <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="80" height="80"><path d="M832.96 935.168l-79.04-62.976q44.736-61.44 63.616-116.608 26.368-77.056 26.368-198.72 0-96.64-54.144-173.376-49.472-70.208-129.856-105.408-21.888-9.6-43.776-15.616-13.44-20.672-31.68-40.96Q475.968 100.928 194.24 0l-14.08 39.424Q451.84 136.768 553.28 249.536l2.816 3.2q-27.52-1.472-55.168 2.752-85.824 13.056-141.632 77.12-55.68 63.936-46.592 143.488 8.32 72.576 62.464 117.248 58.048 47.808 125.824 26.88 74.24-22.848 124.8-124.544 46.656-93.696 16.96-179.392l0.32 0.128q69.696 30.528 112.448 91.2 46.464 65.92 46.464 149.248 0 114.688-24.128 185.152-16.64 48.576-56.768 104.128l-78.08-62.144L607.168 1024l225.92-88.832zM507.328 296.832q40.704-6.208 81.6 2.176 46.08 84.48-0.512 177.984-42.624 85.632-99.712 103.232-46.272 14.272-86.848-19.2-41.152-33.92-47.488-89.6-7.04-61.312 36.544-111.36 45.696-52.48 116.416-63.232z"></path></svg>
+        </div>
+      </form>
+
+    </div>
+
+    <div style="background-color: #ffffff; width: 100%; height: 10px;"></div>
+    <div class="message-content-container">
+      <div class="message-content">
+        <div class="message-content-header">
+          <span class="message-count">{{message_cnt}}</span>
+          <span>Messages</span>
+        </div>
+
+        <div class="message-content-pinned">
+           <div class="message-item" style="box-shadow: 0 0 5px 0 var(--gray-10)">
+            <div class="g-header">
+              <div class="g-header-left">
+              <div class="g-photo">x )</div>
+              <div class="g-info">
+                <div class="g-info-nickname">wzhang</div>
+                <div class="g-info-t">2016-01-01 11:13:00</div>
+              </div>
+            </div>
+              <div class="g-header-right">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M534.357333 361.386667l226.261334 226.261333a32 32 0 0 1-45.226667 45.226667l-171.392-171.306667V832a32 32 0 1 1-64 0v-371.114667l-171.946667 172.032a32 32 0 0 1-40.789333 3.669334l-4.437333-3.669334a32 32 0 0 1 0-45.269333l226.261333-226.261333a32 32 0 0 1 45.226667 0zM748.288 224c10.88 0 19.712 14.336 19.712 32s-8.832 32-19.712 32H275.712C264.832 288 256 273.664 256 256s8.832-32 19.712-32h472.576z"></path></svg>
+                <span>pinned</span>
+              </div>
+            </div>
+            <div>This is a test message. I think this website looks so nice. Oh! Send warm, friendly messages/comments plz.</div>
+          </div>
+
+      <div class="message-content-body">
+          {% for message in messages %}
+           <div class="message-item">
+            <div class="g-header">
+              <div class="g-header-left">
+              <div class="g-photo" style="background-color: {{ message.color }};">{{ message.profile_icon }}</div>
+              <div class="g-info">
+                <div class="g-info-nickname">{{ message.nickname }}</div>
+                <div class="g-info-t">{{ message.create_time | date:"Y-m-d H:i:s" }}</div>
+              </div>
+            </div>
+
+              <div class="g-header-right">
+                  <span style="padding-bottom: 10px; opacity: 0.5;"># {{forloop.revcounter}}</span>
+              </div>
+
+            </div>
+            <div>{{ message.content }}</div>
+          </div>
+          {% endfor %}
+        </div>
+
+        </div>
+
+      </div>
+
+      <div style='
+  position: static;
+  display: inline-flex;
+  background-color: inherit;
+  padding: 50px 0 10px 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.6rem;
+  word-wrap: none;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  letter-spacing: 0.1rem;
+  color: var(--gray-10);
+  gap: 10px;'>
+  <img src="{% static 'img/logo.jpg' %}" width="18px" height="18px" />
+  <span>Copyright © 2026 weinnz.com. All rights are reserved.</span>
+</div>
+    </div>
+
+
+
+    <script src="{% static 'plugins/jquery/jquery-3.7.1.js' %}"></script>
+    <script>
+      $(function () {
+
+        $("#wechat").click(function(){
+          $("#body-bg").css({
+            visibility: "visible",
+            opacity: 0.3,
+          });
+          $(".wechat-qrcode").addClass("slide-up");
+        });
+
+        $("#close-icon, #body-bg").click(function(){
+          $("#body-bg").css({
+            visibility: "hidden",
+            opacity: 0,
+          });
+          $(".wechat-qrcode").removeClass("slide-up");
+        });
+
+        $(window).scroll(function(){
+          $("#body-bg").css({
+            visibility: "hidden",
+            opacity: 0,
+          });
+          $(".wechat-qrcode").removeClass("slide-up");
+        });
+
+      });
+    </script>
+
+    <script>
+      $(function () {
+        $("#submit").click(function(e){
+          e.preventDefault();
+          $(this).prop("disabled", true);
+          $(this).text("input checking...");
+          $(this).css({"font-size": "0.5rem", "color": "var(--gray-700)"});
+          t1 = setTimeout(() => {
+              $("#submit").text("robot checking...");
+            }, 1000);
+          $.ajax({
+            type: "POST",
+            url: "/contact/task/leave-message/",
+            data: {
+              nickname: $("#nickname").val(),
+              email: $("#usremail").val(),
+              content: $("#input-area").val(),
+              level: $("#not_public").is(":checked") ? -1 : 0,
+            },
+            success: function (res) {
+              if (res.status) {
+                clearTimeout(t1);
+              $("#submit").text("message sent ✓");
+              $(".message-container")[0].reset();
+              $(".message-content-body").prepend(res.message_html);
+              $(".message-count").text(res.message_cnt);
+              setTimeout(() => {
+              $("#submit").text("send");
+              $("#submit").css({"font-size": "0.65rem", "color": "var(--gray-900)"});
+              $("#submit").prop("disabled", false);
+            }, 1000);
+              }
+              else {
+                clearTimeout(t1);
+            $("#submit").css({"font-size": "0.65rem", "color": "var(--gray-900)"});
+            $("#submit").text("send");
+            $(".nickname-error").text(res.error.nickname);
+            $(".email-error").text(res.error.email);
+            $(".content-error").text(res.error.content);
+            $("#submit").prop("disabled", false);
+              }
+            },
+          });
+
+
+        });
+
+      $(".message-container input, .message-container textarea").focus(function(){
+      $(this).nextAll("div.nickname-error").text("");
+      $(this).nextAll("div.email-error").text("");
+      $(this).nextAll("div.content-error").text("");
+    });
+
+      });
+    </script>
+  </body>
+</html>
