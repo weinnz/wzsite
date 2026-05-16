@@ -4,6 +4,7 @@
 secrets.toml
 *sql*
 .DS_Store
+/assets
 
 
 # Byte-compiled / optimized / DLL files
